@@ -1,0 +1,10 @@
+<%= @question.post %>
+<% if @answer_count == 0 %>
+<%= form_with model:[@question,@answer],method: :post do |f| %>
+<%= f.text_area :answer %>
+<%= f.submit %>
+<% end %>
+<% end %>
+<% @question.answer.each do |answer| %>
+<%= answer.answer %>
+<% end %>
