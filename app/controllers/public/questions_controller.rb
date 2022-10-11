@@ -12,6 +12,7 @@ class Public::QuestionsController < ApplicationController
      @answer = Answer.new
      #ログインユーザーの回答数
      @answer_count = Answer.where(question_id: params[:id]).where(customer_id: current_customer.id).count
+     @reply = Reply.new
   end
   
   def create

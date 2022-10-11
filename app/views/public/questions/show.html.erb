@@ -1,10 +1,38 @@
-<%= @question.post %>
-<% if @answer_count == 0 %>
-<%= form_with model:[@question,@answer],method: :post do |f| %>
-<%= f.text_area :answer %>
-<%= f.submit %>
-<% end %>
-<% end %>
-<% @question.answer.each do |answer| %>
-<%= answer.answer %>
-<% end %>
+<div class="container">
+  <div class="main">
+    <%= simple_format(@question.post) %>
+    <% if @question.customer_id != current_customer.id && @answer_count <= 0 %>
+      <%= form_with model:[@question,@answer],method: :post do |f| %>
+        <%= f.text_area :answer %>
+        <%= f.submit %>
+      <% end %>
+    <% end %>
+  </div>
+  
+
+    <% @question.answers.each do |answer| %>
+      <%= simple_format(answer.answer) %>
+       
+<div class="replies">
+      <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
+        <%= f.text_area :reply %>
+        <%= f.submit %>
+      <% end %>
+      </div>
+    <% end %>
+
+
+    <p class="reply-show btn btn-warning">返信を見る</p>
+
+    
+      <% @question.replies.each do |reply| %>
+        <div>
+          <%= simple_format(reply.reply) %>
+        </div>
+      <% end %>
+    
+</div>
+
+<script>
+
+</script>

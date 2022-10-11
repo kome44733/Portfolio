@@ -11,8 +11,17 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application" 
+import "../stylesheets/application"
+import '@fortawesome/fontawesome-free/js/all'
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+$(document).ready(function(){
+  // Replyのスライド表示切り替え
+  $(".reply-show").click(function() {
+    $(".replies").slideToggle("");
+  });
+});

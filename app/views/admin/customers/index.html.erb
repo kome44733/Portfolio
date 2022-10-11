@@ -1,0 +1,13 @@
+<div class="container">
+  <% @customers.each do |customer| %>
+    <%= customer.nickname %>
+    <%= customer.gender %>
+    <%= customer.email %>
+    <% if customer.is_deleted == false %>
+      <span class="text-success">有効</span>
+    <% else %>
+      <span class=text-secondary>退会</span>
+    <% end %>
+  
+  <% end %>
+</div>

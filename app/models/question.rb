@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :customer
-  has_many :answer, dependent: :destroy
+  belongs_to :profession
+  has_many :answers, dependent: :destroy
+  has_many :replies
 end

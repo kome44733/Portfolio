@@ -19,9 +19,15 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => "homes#about"
     
-    resources :questions,only:[:new, :show, :index, :create, :destroy] do
-    resources :answers,only:[:show, :index, :create]
-  end
-  end
-  
+      resources :questions,only:[:new, :show, :index, :create, :destroy] do
+        resources :answers,only:[:show, :index, :create]do
+          resources :replies
+        end
+      end
+    end
+    
+  namespace :admin do
+    get '/' => "homes#top"  
+    resources :customers,only:[:show, :index, :edit, :update]
+  end  
 end
