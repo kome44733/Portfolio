@@ -5,7 +5,7 @@ class Public::RepliesController < ApplicationController
     @reply.answer_id = params[:answer_id]
     @reply.question_id = params[:question_id]
     if @reply.save!
-      redirect_to root_path
+      render "public/show"
     else
       redirect_to root_path
     end

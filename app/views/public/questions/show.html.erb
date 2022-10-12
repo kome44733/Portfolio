@@ -8,7 +8,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>
+          <td class ="border">
+            <%= simple_format(@question.customer.nickname+"さん") %>
             <%= simple_format(@question.post) %>
               <% if @question.customer_id != current_customer.id && @answer_count <= 0 %>
                 <%= form_with model:[@question,@answer],method: :post do |f| %>
@@ -22,6 +23,7 @@
     </table>
   </div>
   <div class="main">
+    <% @question.answers.each do |answer| %>
     <table class = "table">
       <thead colspan="4" class ="table-dark">
         <tr>
@@ -30,39 +32,27 @@
       </thead>
       <tbody>
         <tr>
-          <td>
-            <% @question.answers.each do |answer| %>
-      <%= simple_format(answer.answer) %>
-      <% answer.replies.each do |reply| %>
-        <div>
-          <%= simple_format(reply.reply) %>
-        </div>
-      <% end %>
+          <td class ="border">
+            <%= simple_format(answer.customer.nickname+"さん") %>
+            <%= simple_format(answer.answer) %>
+            <% answer.replies.each do |reply| %>
+              <%= simple_format(reply.customer.nickname+"さん") %>
+              <%= simple_format(reply.reply) %>
+            <% end %>
+            <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
+              <% if answer.customer_id == current_customer.id || @question.customer_id == current_customer.id %>
+                <%= f.text_area :reply %>
+                <%= f.submit %>
+              <% end %>
+            <% end %>
           </td>
         </tr>
       </tbody>
     </table>
+    <% end %>
   </div>
   
-
-    
-      
-      <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
-        <%= f.text_area :reply %>
-        <%= f.submit %>
-      <% end %>
-      
-    <% end %>
-
-
-    <p class="reply-show btn btn-warning">返信を見る</p>
-
-    <div class="replies">
-    </div>
-    
+  <p class="reply-show btn btn-warning">返信を見る</p>
+  <div class="replies">
+  </div>
 </div>
-
-     
-<script>
-
-</script>
