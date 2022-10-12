@@ -1,0 +1,7 @@
+<div class="container">
+  <% @professions.each do |profession| %>
+    <%= link_to profession_path(profession) do %> 
+      <%= profession.name %>
+    <% end %>
+  <% end %>
+</div>

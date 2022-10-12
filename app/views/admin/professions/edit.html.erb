@@ -1,0 +1,12 @@
+<div class="container">
+  <div class = "row">
+    <div class = "col-lg-5">
+      <h3 class ="my-5">職業編集</h3>
+        <%= form_with model: @profession, url: admin_profession_path(@profession.id), method: :patch do |f| %>
+          <%= f.label :name,"ジャンル名",class: "mr-4" %>
+          <%= f.text_field :name, class: "mr-4" %>
+          <%= f.submit "変更を保存", class: "btn btn-sm btn-outline-success" %>
+        <% end %>
+    </div>
+  </div>
+</div>

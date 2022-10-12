@@ -1,4 +1,6 @@
 <%= form_with model: @question do |f| %>
+<td class="col-4 table-dark border-top"><%= f.label :profession_id,"ジャンル" %></td>
+<td class="col-4"><%= f.select :profession_id, options_from_collection_for_select(Profession.all, :id, :name), {prompt: "選択してください"}, class: "form-control-sm col-10 pl-1" %></td>
 <%= f.text_area :post %>
 <%= f.submit %>
 <% end %>

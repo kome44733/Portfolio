@@ -1,38 +1,68 @@
 <div class="container">
   <div class="main">
-    <%= simple_format(@question.post) %>
-    <% if @question.customer_id != current_customer.id && @answer_count <= 0 %>
-      <%= form_with model:[@question,@answer],method: :post do |f| %>
-        <%= f.text_area :answer %>
-        <%= f.submit %>
+    <table class = "table">
+      <thead colspan="4" class ="table-dark">
+        <tr>
+          <td>質問</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= simple_format(@question.post) %>
+              <% if @question.customer_id != current_customer.id && @answer_count <= 0 %>
+                <%= form_with model:[@question,@answer],method: :post do |f| %>
+                <%= f.text_area :answer %>
+                <%= f.submit %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="main">
+    <table class = "table">
+      <thead colspan="4" class ="table-dark">
+        <tr>
+          <td>回答</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <% @question.answers.each do |answer| %>
+      <%= simple_format(answer.answer) %>
+      <% answer.replies.each do |reply| %>
+        <div>
+          <%= simple_format(reply.reply) %>
+        </div>
       <% end %>
-    <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   
 
-    <% @question.answers.each do |answer| %>
-      <%= simple_format(answer.answer) %>
-       
-<div class="replies">
+    
+      
       <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
         <%= f.text_area :reply %>
         <%= f.submit %>
       <% end %>
-      </div>
+      
     <% end %>
 
 
     <p class="reply-show btn btn-warning">返信を見る</p>
 
-    
-      <% @question.replies.each do |reply| %>
-        <div>
-          <%= simple_format(reply.reply) %>
-        </div>
-      <% end %>
+    <div class="replies">
+    </div>
     
 </div>
 
+     
 <script>
 
 </script>

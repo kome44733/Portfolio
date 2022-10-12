@@ -18,16 +18,18 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => "homes#about"
-    
-      resources :questions,only:[:new, :show, :index, :create, :destroy] do
-        resources :answers,only:[:show, :index, :create]do
-          resources :replies
-        end
+    resources :customers,only:[:show, :edit, :update]
+    resources :professions,only:[:show, :index]
+    resources :questions,only:[:new, :show, :index, :create, :destroy] do
+      resources :answers,only:[:show, :index, :create]do
+        resources :replies
       end
     end
+  end
     
   namespace :admin do
     get '/' => "homes#top"  
     resources :customers,only:[:show, :index, :edit, :update]
+    resources :professions,only:[:index, :edit, :update, :create]
   end  
 end

@@ -1,3 +1,26 @@
-<% @questions.each do |question| %>
-<%= link_to question.post,question %>
-<%end%>
+<div class="container">
+  <table class="table col-12">
+    <thead class ="table-dark">
+      <tr>
+        <th class= "col-3">
+          <h4>職業</h4>
+        </th>
+        <th class= "col-9">
+          <h4>質問内容</h4>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @questions.each do |question| %>
+      <tr>
+        <td>
+          <%= question.profession.name %>
+        </td>
+        <td>
+          <%= link_to question.post,question %>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>

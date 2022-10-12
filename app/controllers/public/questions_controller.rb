@@ -18,7 +18,7 @@ class Public::QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.customer_id = current_customer.id 
-    if @question.save
+    if @question.save!
       redirect_to questions_path
     else
       render :new
@@ -26,6 +26,6 @@ class Public::QuestionsController < ApplicationController
   end
   
   def question_params
-    params.require(:question).permit(:post)
+    params.require(:question).permit(:post, :profession_id)
   end
 end
