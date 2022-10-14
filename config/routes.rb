@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     get 'about' => "homes#about"
     resources :customers,only:[:show, :edit, :update]
     resources :professions,only:[:show, :index]
-    resources :questions,only:[:new, :show, :index, :create, :destroy] do
+    resources :questions do
+      resource :favorites, only: [:create, :destroy]
       resources :answers,only:[:show, :index, :create]do
         resources :replies
       end

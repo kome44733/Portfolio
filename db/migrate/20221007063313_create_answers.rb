@@ -5,6 +5,7 @@ class CreateAnswers < ActiveRecord::Migration[6.1]
       t.integer :question_id
       t.integer :customer_id
       t.integer :profession_id
+      
       t.timestamps
     end
   end

@@ -1,5 +1,6 @@
-class Public::CustomerController < ApplicationController
+class Public::CustomersController < ApplicationController
   def show
-    @customers = Customer.all
+    @customer = current_customer
+    @favorites = current_customer.favorites.all
   end
 end

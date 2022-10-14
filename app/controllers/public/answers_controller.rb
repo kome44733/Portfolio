@@ -4,11 +4,8 @@ class Public::AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = current_customer.answers.new(answer_params)
     @answer.question_id = @question.id
-    if @answer.save
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    @answer.save
+    redirect_to question_path(@answer.question_id)
   end
 
   private
