@@ -14,7 +14,10 @@
       <div class ="col-sm-4 col-lg-5 text-light">
         <ul class="navbar-nav my-3 d-md-flex justify-content-md-end">
           <li class="nav-item mr-4">
-            <%= link_to "ログアウト",root_path: :delete,class: "btn btn-sm btn-outline-light" %>
+            <%= link_to "ユーザー一覧",admin_customers_path,class: "btn btn-sm btn-outline-light"%>
+          </li>
+          <li class="nav-item mr-4">
+            <%= link_to "ログアウト",destroy_admin_session_path,method: :delete,class: "btn btn-sm btn-outline-light"%>
           </li>
         </ul>
       </div>

@@ -31,24 +31,23 @@
   <div class="main">
     <% @question.answers.each do |answer| %>
     <table class = "table">
-          <% if @best_answer.id == answer.id %>
+          <% if answer.question.best_answer_id == answer.id %>
       <thead class ="table-success">
         <tr>
           <td>回答<%= (answer.customer.nickname+"さん""ベストアンサーに選ばれました") %>
           <% else %>
       <thead class ="table-dark">
         <tr>
-          <td>回答<%= (answer.customer.nickname+"さん") %>
+          <td>回答<%= answer.customer.nickname+"さん" %>
           <% end %>
-            <% if @question.best_answer_id.nil? %>
-              <%= form_with model: @question, local: true do |form| %>
-                <%= form.hidden_field :best_answer_id, value: answer.id %>
-                <%= form.submit 'ベストアンサー'%>
+            <% if @question.customer_id == current_customer.id %>
+              <% if @question.best_answer_id.nil? %>
+                <%= form_with model: @question, local: true do |form| %>
+                  <%= form.hidden_field :best_answer_id, value: answer.id %>
+                  <%= form.submit 'ベストアンサー'%>
+                <% end %>
               <% end %>
             <% end %>
-          
-          
-          
           </td>
         </tr>
       </thead>

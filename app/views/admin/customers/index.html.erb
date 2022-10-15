@@ -1,12 +1,35 @@
-
-  <% @customers.each do |customer| %>
-    <%= customer.nickname %>
-    <%= customer.gender %>
-    <%= customer.email %>
-    <% if customer.is_deleted == false %>
-      <span class="text-success">有効</span>
-    <% else %>
-      <span class=text-secondary>退会</span>
-    <% end %>
-  
-  <% end %>
+<div class="container">
+  <div class="mb-4 mt-5">
+    <h3>会員一覧</h3>
+  </div>
+  <table class = "table">
+    <thead class ="table-dark">
+      <tr>
+        <td>会員ID</td>
+        <td>登録名</td>
+        <td>メールアドレス</td>
+        <td>ステータス</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td>
+          <%= link_to admin_customer_path(customer), class: "text-dark" do %>
+          <%= customer.nickname %>
+          <% end %>
+        </td>
+        <td><%= customer.email %></td>
+        <td>
+          <% if customer.is_deleted == false %>
+            <span class="text-success">有効</span>
+          <% else %>
+            <span class=text-secondary>退会</span>
+          <% end %>
+        </td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>

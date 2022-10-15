@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => "homes#about"
+    
     resources :customers,only:[:show, :edit, :update]
+    get '/customers/:id/unsubscribe' => "customers#unsubscribe" , as:"unsubscribe" 
+    patch '/customers/:id/withdrawal' => "customers#withdrawal", as:"withdrawal" 
+    
     resources :professions,only:[:show, :index]
     resources :questions do
       resource :favorites, only: [:create, :destroy]

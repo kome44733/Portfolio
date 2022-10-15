@@ -10,11 +10,7 @@
             <h4 class="font-weight-bold">登録情報</h4>
           </td>
           <td class="col-2">
-            
-          </td>
-          <td class="col-4">
-          </td>
-          <td class="col-4">
+            <%= link_to "編集する", edit_customer_path(current_customer),class: 'btn btn-outline-success' %>
           </td>
         </tr>
       </table>
@@ -46,8 +42,44 @@
       </table>
     </div>
   </div>
+  
+
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <td>
+          <h4 class="font-weight-bold">お気に入りの質問</h4>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.question.post %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <td>
+          <h4 class="font-weight-bold">自分の投稿</h4>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <% link_to 
+        <td><%= favorite.question.post %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
 </div>
 
-<% @favorites.each do |favorite| %>
-<%= favorite.question.post %>
-<% end %>
+
+
+
+
