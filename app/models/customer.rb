@@ -13,5 +13,5 @@ class Customer < ApplicationRecord
     super && (is_deleted == false)
   end
   
-  enum gender: { not_known: 0, male: 1, female: 2 }
+  enum gender: { 不明: 0, 男性: 1, 女性: 2 }
 end

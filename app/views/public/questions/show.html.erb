@@ -2,12 +2,11 @@
   <div class="main">
     <table class = "table">
       <thead class ="table-dark">
-        
         <tr>
-          <td>質問</td>
-          <td id="favorite_btn_<%= @question.id %>">
+          <th>質問</th>
+          <th id="favorite_btn_<%= @question.id %>">
             <%= render 'public/favorites/favorite-btn',question: @question %>
-          </td>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -40,12 +39,10 @@
         <tr>
           <td>回答<%= answer.customer.nickname+"さん" %>
           <% end %>
-            <% if @question.customer_id == current_customer.id %>
-              <% if @question.best_answer_id.nil? %>
-                <%= form_with model: @question, local: true do |form| %>
-                  <%= form.hidden_field :best_answer_id, value: answer.id %>
-                  <%= form.submit 'ベストアンサー'%>
-                <% end %>
+            <% if @question.customer_id == current_customer.id && @question.best_answer_id.nil? %>
+              <%= form_with model: @question, local: true do |form| %>
+                <%= form.hidden_field :best_answer_id, value: answer.id %>
+                <%= form.submit 'ベストアンサー'%>
               <% end %>
             <% end %>
           </td>
@@ -55,22 +52,20 @@
         <tr>
           <td class ="border">
             <div class="border">
-            
+
             <%= simple_format(answer.customer.nickname+"さん") %>
             <%= simple_format(answer.answer) %>
-            
-            
+
+
             </div>
             <% answer.replies.each do |reply| %>
               <%= simple_format(reply.customer.nickname+"さん") %>
               <%= simple_format(reply.reply) %>
             <% end %>
             <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
-              <% if answer.customer_id == current_customer.id || @question.customer_id == current_customer.id %>
-                <% if @question.best_answer_id.nil? %>
-                  <%= f.text_area :reply %>
-                  <%= f.submit %>
-                <% end %>
+              <% if (answer.customer_id == current_customer.id || @question.customer_id == current_customer.id) &&  @question.best_answer_id.nil? %>
+                <%= f.text_area :reply %>
+                <%= f.submit %>
               <% end %>
             <% end %>
           </td>
@@ -79,7 +74,7 @@
     </table>
     <% end %>
   </div>
-  
+
   <p class="reply-show btn btn-warning">返信を見る</p>
   <div class="replies">
   </div>

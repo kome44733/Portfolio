@@ -9,4 +9,13 @@ class Question < ApplicationRecord
   end
   
   has_many :replies
+  
+  def self.search(word)
+    where("post LIKE?","%#{word}%")
+  end
+  
+  def self.searchProfession(word,profession)
+    profession = Question.where(profession_id: profession)
+    profession.where("post LIKE?","%#{word}%")
+  end
 end

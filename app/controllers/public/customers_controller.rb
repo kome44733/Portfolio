@@ -2,6 +2,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = current_customer
     @favorites = current_customer.favorites.all
+    @questions = current_customer.questions.all
   end
   
   def edit

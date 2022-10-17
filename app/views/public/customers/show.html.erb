@@ -42,44 +42,71 @@
       </table>
     </div>
   </div>
-  
 
-  <table class="table">
-    <thead class="table-dark">
-      <tr>
-        <td>
-          <h4 class="font-weight-bold">お気に入りの質問</h4>
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= favorite.question.post %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
-  <table class="table">
-    <thead class="table-dark">
-      <tr>
-        <td>
-          <h4 class="font-weight-bold">自分の投稿</h4>
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <% link_to 
-        <td><%= favorite.question.post %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
+
+
+<div class="container">
+  <ul class="nav nav-tabs nav-fill" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">お気に入りの質問</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">投稿した質問</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+      <table class="table col-12">
+        <thead class ="table-dark">
+          <tr>
+            <th class= "col-4">
+              <h4>職業</h4>
+            </th>
+            <th>
+              <h4>質問内容</h4>
+            </th>
+          </tr>
+        </thead>
+        <% @favorites.each do |favorite| %>
+        <tbody class = "col-5">
+          <tr>
+            <td>
+              <%= favorite.question.profession.name %>
+            </td>
+            <td>
+              <%= link_to favorite.question.post,question_path(favorite.question.id) %>
+            </td>
+          </tr>
+        </tbody>
+        <%end%>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+      <table class="table col-12">
+        <thead class ="table-dark">
+          <tr>
+            <th class= "col-4">
+              <h4>職業</h4>
+            </th>
+            <th>
+              <h4>質問内容</h4>
+            </th>
+          </tr>
+        </thead>
+        <% @questions.each do |question| %>
+        <tbody class = "col-5">
+          <tr>
+            <td>
+              <%= question.profession.name %>
+            </td>
+            <td>
+              <%= link_to question.post,question %>
+            </td>
+          </tr>
+        </tbody>
+        <%end%>
+      </table>
+    </div>
+  </div>
 </div>
-
-
-
-
 

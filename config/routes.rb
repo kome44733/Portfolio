@@ -37,4 +37,7 @@ Rails.application.routes.draw do
     resources :customers,only:[:show, :index, :edit, :update]
     resources :professions,only:[:index, :edit, :update, :create]
   end  
+  
+  get "search" => "searches#search"
+  
 end
