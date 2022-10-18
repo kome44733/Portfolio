@@ -1,4 +1,7 @@
 class Public::QuestionsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :correct_question,only: [:update,:destroy,:create]
+  
   def new
     @question = Question.new
   end
@@ -11,7 +14,9 @@ class Public::QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @answer = Answer.new
     #ログインユーザーの回答数
-    @answer_count = Answer.where(question_id: params[:id]).where(customer_id: current_customer.id).count
+      if customer_signed_in?
+        @answer_count = Answer.where(question_id: params[:id]).where(customer_id: current_customer.id).count
+      end
     @reply = Reply.new
 
   end
@@ -32,7 +37,21 @@ class Public::QuestionsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    question = Question.find(params[:id])
+    question.destroy
+    redirect_to request.referer
+  end
+  
   private
+  def correct_answer
+      @question = Question.find(params[:id])
+    unless @customer.id == current_customer.id
+      redirect_to customer_path(current_customer)
+    end
+  end
+
   def question_params
     params.require(:question).permit(:post, :profession_id, :is_resolution, :best_answer_id)
   end

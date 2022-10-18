@@ -1,0 +1,10 @@
+<div class="container">
+  <%= render "/layouts/search" %>
+  <% @questions.each do |question| %>
+    <table class = "table">
+</br>
+          <%= question.profession.name %>
+          <%= link_to question.post,admin_question_path(question) %>
+          <%= link_to "Destroy", question_path(question), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+  <%end%>
+</div>

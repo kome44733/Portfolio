@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+ .replies {
+  display: none;
+  background-color: #f0f0f0;
+}
+
+
+.top_image {
+
+  background-image: url(images/top.jpg);
+  background-position: left top;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	height: 750px;
+}

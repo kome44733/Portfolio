@@ -1,4 +1,6 @@
 class Admin::ProfessionsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @profession   = Profession.new
     @professions  = Profession.all

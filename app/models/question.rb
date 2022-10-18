@@ -10,6 +10,8 @@ class Question < ApplicationRecord
   
   has_many :replies
   
+  validates :post, presence: true
+  
   def self.search(word)
     where("post LIKE?","%#{word}%")
   end

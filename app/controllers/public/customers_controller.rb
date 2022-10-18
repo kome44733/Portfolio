@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :correct_customer
   def show
     @customer = current_customer
     @favorites = current_customer.favorites.all
@@ -26,6 +28,13 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
+  end
+  
+  def correct_customer
+      @customer= Customer.find(params[:id])
+    unless @customer.id == current_customer.id
+      redirect_to customer_path(current_customer)
+    end
   end
   
   private

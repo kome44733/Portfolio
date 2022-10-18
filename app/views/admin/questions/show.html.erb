@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="main">
+    <table class = "table">
+      <thead class ="table-dark">
+        <tr>
+          <th>質問</th>
+          
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class ="border">
+          <td>
+            <%= simple_format(@question.customer.nickname+"さん") %>
+            <%= simple_format(@question.post) %>
+            
+              
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="main">
+    <% @question.answers.each do |answer| %>
+    <table class = "table">
+          <% if answer.question.best_answer_id == answer.id %>
+      <thead class ="table-success">
+        <tr>
+          <td>回答<%= (answer.customer.nickname+"さん""ベストアンサーに選ばれました") %>
+          <% else %>
+      <thead class ="table-dark">
+        <tr>
+          <td>回答<%= answer.customer.nickname+"さん" %>
+          <% end %>
+            
+              
+       
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class ="border">
+            <div class="border">
+
+            <%= simple_format(answer.customer.nickname+"さん") %>
+            <%= simple_format(answer.answer) %>
+            <%= link_to "Destroy", question_answer_path(@question,answer), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+
+            </div>
+            <% answer.replies.each do |reply| %>
+              <%= simple_format(reply.customer.nickname+"さん") %>
+              <%= simple_format(reply.reply) %>
+              <%= link_to "Destroy", question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+            <% end %>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+</div>

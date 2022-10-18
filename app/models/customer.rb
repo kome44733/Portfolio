@@ -13,5 +13,14 @@ class Customer < ApplicationRecord
     super && (is_deleted == false)
   end
   
-  enum gender: { 不明: 0, 男性: 1, 女性: 2 }
+  def self.searchCustomer(word,customer)
+    customer = Customer.where("nickname LIKE ? OR enail LIKE ?","%#{word}%","%#{word}%")
+  end
+  
+
+   # where('title LIKE ? OR body LIKE ?', "%#{keyword}%", "%#{keyword}%")
+  
+  validates :nickname, presence: true   ,length: { in: 1..15 }
+  
+  enum gender: { not_known: 0, male: 1, female: 2 }
 end

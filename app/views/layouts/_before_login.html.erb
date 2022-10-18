@@ -1,31 +1,22 @@
 <!--ログイン前ヘッダー（共通）-->
-<nav class ="navbar navbar-expand-lg bg-info px-0 py-0">
-    <div class="collapse navbar-collapse">
-      <div class ="col-sm-4 col-lg-5">
-      <h1 class="outline-secondary my-1">
-        <%= link_to root_path do %>
-        １</h1>
-        <% end %>
-      </div>
-      
-      <div class ="col-sm-4 col-lg-2">
-      </div>
-     
-      <div class ="col-sm-4 col-lg-5 text-light">
-        <ul class="navbar-nav my-3 d-md-flex justify-content-md-end">
-          <li class="nav-item mr-4">
-            <%=link_to "About",about_path,class: "btn btn-sm btn-outline-light" %>
-          </li>
-          <li class="nav-item mr-4">
-            <%= link_to "Q&A一覧",root_path,class: "btn btn-sm btn-outline-light"%>
-          </li>
-          <li class="nav-item mr-4">
-            <%= link_to "新規登録",new_customer_registration_path,class: "btn btn-sm btn-outline-light" %>
-          </li>
-          <li class="nav-item mr-4">
-            <%= link_to "ログイン",new_customer_session_path,class: "btn btn-sm btn-outline-light" %>
-          </li>
-        </ul>
-      </div>
-    </div>
+<nav class ="navbar navbar-expand-lg navbar-light bg-info">
+  <%= link_to root_path,class: "navbar-brand" do %>
+    <%= image_tag 'FUTURECAREER.png',size: "250x100" %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to "Q&A一覧",root_path,class: "nav-link"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "新規登録",new_customer_registration_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログイン",new_customer_session_path,class: "nav-link" %>
+      </li>
+    </ul>
+  </div>
 </nav>

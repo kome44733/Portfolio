@@ -1,15 +1,13 @@
-<div class="container">
-  <table class = "table">
-    
-    <thead>
-      <tr>
-        <th>
-          <p>職業一覧</p>
-        </th>
-      </tr>
-    </thead>  
-    <tbody>
-      <% @professions.each do |profession| %>
+<table class = "table">
+  <thead>
+    <tr>
+      <th>
+        <p>職業一覧</p>
+      </th>
+    </tr>
+  </thead>  
+  <tbody>
+    <% @professions.each do |profession| %>
       <tr>
         <td>
           <%= link_to profession_path(profession) do %> 
@@ -18,6 +16,5 @@
         </td>
       </tr>
     <% end %>
-    </tbody>
-  </table>
-</div>
+  </tbody>
+</table>

@@ -1,25 +1,22 @@
 <!--admin login後のヘッダー-->
-<nav class ="navbar navbar-expand-lg bg-info px-0 py-0">
-    <div class="collapse navbar-collapse">
-      <div class ="col-sm-4 col-lg-5">
-      <h1 class="outline-secondary my-1">
-        <%= link_to root_path do %>
-        １</h1>
-        <% end %>
-      </div>
-
-      <div class ="col-sm-4 col-lg-2">
-      </div>
-
-      <div class ="col-sm-4 col-lg-5 text-light">
-        <ul class="navbar-nav my-3 d-md-flex justify-content-md-end">
-          <li class="nav-item mr-4">
-            <%= link_to "ユーザー一覧",admin_customers_path,class: "btn btn-sm btn-outline-light"%>
-          </li>
-          <li class="nav-item mr-4">
-            <%= link_to "ログアウト",destroy_admin_session_path,method: :delete,class: "btn btn-sm btn-outline-light"%>
-          </li>
-        </ul>
-      </div>
-    </div>
+<nav class ="navbar navbar-expand-lg navbar-light bg-info">
+  <%= link_to root_path,class: "navbar-brand" do %>
+    <%= image_tag 'FUTURECAREER.png',size: "250x100" %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item mr-4">
+        <%= link_to "ユーザー一覧",admin_customers_path,class: "nav-link"%>
+      </li>
+      <li class="nav-item mr-4">
+        <%= link_to "質問管理",admin_questions_path,class: "nav-link"%>
+      </li>
+      <li class="nav-item mr-4">
+        <%= link_to "ログアウト",destroy_admin_session_path,method: :delete,class: "nav-link"%>
+      </li>
+    </ul>
+  </div>
 </nav>

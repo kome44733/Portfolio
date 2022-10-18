@@ -1,0 +1,69 @@
+<div class="container">
+  <ul class="nav nav-tabs nav-fill" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">未解決の質問</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">解決済みの質問</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+      <table class="table col-12">
+        <thead class ="table-dark">
+          <tr>
+            <th class= "col-3">
+              <h4>職業</h4>
+            </th>
+            <th class= "col-4">
+              <h4>質問内容</h4>
+            </th>
+          </tr>
+        </thead>
+        <% @questions.each do |question| %>
+        <% if question.best_answer_id.nil? %>
+        <tbody class = "col-5">
+          <tr>
+            <td>
+              <%= question.profession.name %>
+            </td>
+            <td>
+              <%= link_to question.post,question %>
+            </td>
+          </tr>
+        </tbody>
+        <%end%>
+        <%end%>
+      </table>
+    </div>  
+    <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+      <table class="table col-12">
+        <thead class ="table-dark">
+          <tr>
+            <th class= "col-3">
+              <h4>職業</h4>
+            </th>
+            <th class= "col-4">
+              <h4>質問内容</h4>
+            </th>
+          </tr>
+        </thead>
+        <% @questions.each do |question| %>
+        <% unless question.best_answer_id.nil? %>
+        <tbody class = "col-5">
+          <tr>
+            <td>
+              <%= question.profession.name %>
+            </td>
+            <td>
+              <%= link_to question.post,question %>
+            </td>
+          </tr>
+        </tbody>
+        <%end%>
+        <%end%>
+      </table>
+    </div>  
+  </div>
+  <%= link_to "戻る",:back %>
+</div>
