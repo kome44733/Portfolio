@@ -13,17 +13,20 @@
  *= require_tree .
  *= require_self
  */
- .replies {
-  display: none;
-  background-color: #f0f0f0;
+
+// assets配下でscss管理する場合、画像は以下の書式で指定する
+// .top_image {
+//   background-image: image-url("top.jpg");
+// }
+
+/************************
+ * TOP h2 Tag
+ ************************/
+.top-title {
+ font-size: calc(15px + 2vw)
 }
 
-
-.top_image {
-
-  background-image: url(images/top.jpg);
-  background-position: left top;
-	background-repeat: no-repeat;
-	background-size: 100% auto;
-	height: 750px;
+.replies {
+ display: none;
+ background-color: #f0f0f0;
 }

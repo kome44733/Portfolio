@@ -1,7 +1,7 @@
 class Public::RepliesController < ApplicationController
   
   before_action :authenticate_customer!
-  before_action :correct_reply,only: [:destroy,:create]
+  before_action :correct_reply,only: [:destroy]
   
   def create
     @reply = Reply.new(reply_params)
@@ -23,7 +23,7 @@ class Public::RepliesController < ApplicationController
   
   def correct_reply
       @reply= Reply.find(params[:id])
-    unless @customer.id == current_customer.id
+    unless @reply.customer.id == current_customer.id
       redirect_to customer_path(current_customer)
     end
   end

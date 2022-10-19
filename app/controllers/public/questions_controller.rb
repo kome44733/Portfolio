@@ -1,7 +1,7 @@
 class Public::QuestionsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :correct_question,only: [:update,:destroy,:create]
-  
+  before_action :correct_question,only: [:update,:destroy]
+
   def new
     @question = Question.new
   end
@@ -43,13 +43,14 @@ class Public::QuestionsController < ApplicationController
     question.destroy
     redirect_to request.referer
   end
-  
+
   private
-  def correct_answer
-      @question = Question.find(params[:id])
-    unless @customer.id == current_customer.id
+  def correct_question
+    @question = Question.find(params[:id])
+    unless @question.customer_id == current_customer.id
       redirect_to customer_path(current_customer)
     end
+    # redirect_to customer_path(current_customer) unless @question.customer_id == current_customer.id
   end
 
   def question_params

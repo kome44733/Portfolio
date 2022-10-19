@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers, controllers: {
@@ -11,37 +11,42 @@ Rails.application.routes.draw do
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
-    
+
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   scope module: :public do
     root to: 'homes#top'
     get 'about' => "homes#about"
-    
-    
+
+
     resources :customers,only:[:show, :update, :edit]
-    get '/customers/:id/unsubscribe' => "customers#unsubscribe" , as:"unsubscribe" 
-    patch '/customers/:id/withdrawal' => "customers#withdrawal", as:"withdrawal" 
-    
+    get '/customers/:id/unsubscribe' => "customers#unsubscribe" , as:"unsubscribe"
+    patch '/customers/:id/withdrawal' => "customers#withdrawal", as:"withdrawal"
+
     resources :professions,only:[:show, :index]
     resources :questions do
       resource :favorites, only: [:create, :destroy]
       resources :answers,only:[:show, :index, :create,:destroy]do
-        resources :replies
+        resources :replies, only: [:create, :destroy]
       end
     end
   end
-  
+
   namespace :admin do
-    get '/' => "homes#top" 
+    get '/' => "homes#top"
+
+    resources :questions 
+    resources :answers,only:[:destroy]
+    resources :replies, only: [:destroy]
+      
     
-    resources :questions
     resources :customers,only:[:show, :index, :edit, :update]
     resources :professions,only:[:index, :edit, :update, :create]
-  end  
-  
+  end
+
   get "search" => "searches#search"
-  get "admin/search" => "searches#adminsearch" 
-  
+  get "admin/search" => "searches#admin_search"
+  get "admin/customer_search" => "searches#admin_customer_search"
+
 end

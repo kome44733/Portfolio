@@ -1,6 +1,6 @@
 class Public::AnswersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :correct_answer,only: [:create,:destroy]
+  before_action :correct_answer,only: [:destroy]
   
   def create
     @question = Question.find(params[:question_id])
@@ -20,7 +20,7 @@ class Public::AnswersController < ApplicationController
   private
   def correct_answer
       @answer = Answer.find(params[:id])
-    unless @customer.id == current_customer.id
+    unless @answer.customer.id == current_customer.id
       redirect_to customer_path(current_customer)
     end
   end

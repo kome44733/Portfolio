@@ -1,13 +1,18 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <h3>会員一覧</h3>
-    </div>
-    <div class="col-md-4">
-      <%= render "layouts/admin_search" %>
-    </div>
+  <%#= render "/layouts/search" %>
+  <!--ここから-->
+  <div class="search_form">
+    <% if admin_signed_in? %>
+      <%= form_with url: admin_customer_search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :word ,placeholder:"会員を検索する" %>
+        <%= f.submit "検索", class: "btn btn-sm btn-outline-dark" %>
+      <% end %>
+    <% end %>
   </div>
-  </br>
+  <!--ここまで-->
+  <div class="mb-4 mt-5">
+    <h3>会員一覧</h3>
+  </div>
   <table class = "table">
     <thead class ="table-dark">
       <tr>

@@ -4,8 +4,6 @@
       <thead class ="table-dark">
         <tr>
           <th>質問</th>
-          
-          </th>
         </tr>
       </thead>
       <tbody>
@@ -13,8 +11,6 @@
           <td>
             <%= simple_format(@question.customer.nickname+"さん") %>
             <%= simple_format(@question.post) %>
-            
-              
           </td>
         </tr>
       </tbody>
@@ -32,9 +28,6 @@
         <tr>
           <td>回答<%= answer.customer.nickname+"さん" %>
           <% end %>
-            
-              
-       
           </td>
         </tr>
       </thead>
@@ -42,18 +35,15 @@
         <tr>
           <td class ="border">
             <div class="border">
-
             <%= simple_format(answer.customer.nickname+"さん") %>
             <%= simple_format(answer.answer) %>
-            <%= link_to "Destroy", question_answer_path(@question,answer), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
-
+            <%= link_to "Destroy", admin_answer_path(answer.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
             </div>
             <% answer.replies.each do |reply| %>
               <%= simple_format(reply.customer.nickname+"さん") %>
               <%= simple_format(reply.reply) %>
-              <%= link_to "Destroy", question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+              <%= link_to "Destroy", admin_reply_path(reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
             <% end %>
-            
           </td>
         </tr>
       </tbody>
