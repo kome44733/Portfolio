@@ -10,7 +10,7 @@ class Question < ApplicationRecord
   end
   
   
-  validates :post, presence: true
+  validates :post, presence: true,length: { in: 1..400 }
   
   def self.search(word)
     where("post LIKE?","%#{word}%")

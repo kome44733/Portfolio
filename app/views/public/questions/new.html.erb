@@ -2,7 +2,7 @@
   <%= form_with model: @question ,method: :post do |f| %>
   <div class="row col-md-12 mb-3">
     <div class="col-md-2 text-center">
-      <%= f.label :profession_id,"ジャンル" %>
+      <%= f.label :profession_id,"職業" %>
     </div>
     <div class="col-md-9">
       <%= f.select :profession_id, options_from_collection_for_select(Profession.all, :id, :name), {prompt: "選択してください"}, class: "form-control-sm pl-1" %>

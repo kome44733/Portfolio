@@ -31,7 +31,7 @@ class Public::QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.customer_id = current_customer.id
-    if @question.save!
+    if @question.save
       redirect_to questions_path
     else
       render :new

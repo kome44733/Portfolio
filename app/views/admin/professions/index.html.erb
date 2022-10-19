@@ -1,8 +1,7 @@
 <div class="container">
   <div class = "row">
     <div class = "col-lg-5">
-      <h3 class ="my-5">ジャンル一覧・追加</h3>
-
+      <h3>職業一覧・追加</h3></br>
         <%= form_with model: @profession,url:admin_professions_path, method: :post do |f| %>
           <%= f.label :name,"職業" %>
           <%= f.text_field :name %>
@@ -11,7 +10,7 @@
 
         <table class= "table mt-5">
           <thead>
-            <th class ="table-dark">ジャンル</th>
+            <th class ="table-dark">職業</th>
             <th class ="table-dark"></th>
           </thead>
           <tbody>

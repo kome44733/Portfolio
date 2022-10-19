@@ -5,7 +5,7 @@
         <tr>
           <th>質問</th>
           <% if customer_signed_in? %>
-          <th id="favorite_btn_<%= @question.id %>">
+          <th id="favorite_btn_<%= @question.id %>"class ="text-right">
             <%= render 'public/favorites/favorite-btn',question: @question %>
           </th>
           <% end %>
@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr class ="border">
-          <td>
+          <td colspan = "2">
             <%= simple_format(@question.customer.nickname+"さん") %>
             <%= simple_format(@question.post) %>
             <% if customer_signed_in? && (@question.customer_id != current_customer.id && @answer_count <= 0) %>
@@ -31,52 +31,56 @@
   </div>
   <div class="main">
     <% @question.answers.each do |answer| %>
-    <table class = "table">
-          <% if answer.question.best_answer_id == answer.id %>
-      <thead class ="table-success">
-        <tr>
-          <td>回答<%= (answer.customer.nickname+"さん""ベストアンサーに選ばれました") %>
-          <% else %>
-      <thead class ="table-dark">
-        <tr>
-          <td>回答<%= answer.customer.nickname+"さん" %>
-          <% end %>
-            <% if customer_signed_in? && (@question.customer_id == current_customer.id && @question.best_answer_id.nil?) %>
-              <%= form_with model: @question, local: true do |form| %>
-                <%= form.hidden_field :best_answer_id, value: answer.id %>
-                <%= form.submit 'ベストアンサー'%>
-              <% end %>
+      <table class = "table">
+            <% if answer.question.best_answer_id == answer.id %>
+        <thead class ="table-success">
+          <tr>
+            <td>回答<%= (answer.customer.nickname+"さん""ベストアンサーに選ばれました") %>
+            <% else %>
+        <thead class ="table-dark">
+          <tr>
+            <td>回答<%= answer.customer.nickname+"さん" %>
             <% end %>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class ="border">
-            <div class="border">
-              <%= simple_format(answer.customer.nickname+"さん") %>
-              <%= simple_format(answer.answer) %>
-              <% if customer_signed_in? && (answer.customer_id == current_customer.id) %>
-                <%= link_to "Destroy", question_answer_path(@question,answer), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+              <% if customer_signed_in? && (@question.customer_id == current_customer.id && @question.best_answer_id.nil?) %>
+                <%= form_with model: @question, local: true do |form| %>
+                  <%= form.hidden_field :best_answer_id, value: answer.id %>
+                  <%= form.submit 'ベストアンサー'%>
+                <% end %>
               <% end %>
-            </div>
-            <% answer.replies.each do |reply| %>
-              <%= simple_format(reply.customer.nickname+"さん") %>
-              <%= simple_format(reply.reply) %>
-              <% if customer_signed_in? && (reply.customer_id == current_customer.id) %>
-                <%= link_to "Destroy", question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class ="border">
+              <div class="border">
+                <%= simple_format(answer.customer.nickname+"さん") %>
+                <%= simple_format(answer.answer) %>
+                <% if customer_signed_in? && (answer.customer_id == current_customer.id) %>
+                  <div class="col-12 text-right py-1">
+                    <%= link_to "Destroy", question_answer_path(@question,answer), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+                  </div>
+                <% end %>
+              </div>
+              <% answer.replies.each do |reply| %>
+                <%= simple_format(reply.customer.nickname+"さん") %>
+                <%= simple_format(reply.reply) %>
+                <% if customer_signed_in? && (reply.customer_id == current_customer.id) %>
+                  <div class="col-12 text-right py-1">
+                    <%= link_to "Destroy", question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
-            <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
-              <% if customer_signed_in? && (answer.customer_id == current_customer.id || @question.customer_id == current_customer.id) &&  @question.best_answer_id.nil? %>
-                <%= f.text_area :reply,placeholder:"返信を入力してください",class: "form-control" %>
-                <%= f.submit "送信する"%>
+              <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
+                <% if customer_signed_in? && (answer.customer_id == current_customer.id || @question.customer_id == current_customer.id) &&  @question.best_answer_id.nil? %>
+                  <%= f.text_area :reply,placeholder:"返信を入力してください",class: "form-control" %>
+                  <%= f.submit "送信する"%>
+                <% end %>
               <% end %>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     <% end %>
   </div>
 

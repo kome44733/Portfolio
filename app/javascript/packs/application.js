@@ -16,11 +16,3 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-
-$(document).ready(function(){
-  // Replyのスライド表示切り替え
-  $(".reply-show").click(function() {
-    $(".replies").slideToggle("");
-  });
-});
