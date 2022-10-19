@@ -34,6 +34,7 @@ class Public::QuestionsController < ApplicationController
     if @question.save
       redirect_to questions_path
     else
+      flash[:alert] = "投稿に失敗しました。"
       render :new
     end
   end

@@ -5,7 +5,7 @@
         <tr>
           <th>質問</th>
           <% if customer_signed_in? %>
-          <th id="favorite_btn_<%= @question.id %>"class ="text-right">
+          <th id="favorite_btn_<%= @question.id %>"class= "text-right"class= "text-white">
             <%= render 'public/favorites/favorite-btn',question: @question %>
           </th>
           <% end %>
@@ -41,6 +41,8 @@
           <tr>
             <td>回答<%= answer.customer.nickname+"さん" %>
             <% end %>
+            </td>
+            <td class ="text-right">
               <% if customer_signed_in? && (@question.customer_id == current_customer.id && @question.best_answer_id.nil?) %>
                 <%= form_with model: @question, local: true do |form| %>
                   <%= form.hidden_field :best_answer_id, value: answer.id %>
@@ -52,7 +54,7 @@
         </thead>
         <tbody>
           <tr>
-            <td class ="border">
+            <td class ="border" colspan = "2">
               <div class="border">
                 <%= simple_format(answer.customer.nickname+"さん") %>
                 <%= simple_format(answer.answer) %>
