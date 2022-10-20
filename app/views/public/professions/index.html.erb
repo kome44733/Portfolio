@@ -1,20 +1,22 @@
-<table class = "table">
-  <thead>
-    <tr>
-      <th>
-        <p>職業一覧</p>
-      </th>
-    </tr>
-  </thead>  
-  <tbody>
-    <% @professions.each do |profession| %>
+<div class="container">
+  <table class = "table boder">
+    <thead>
       <tr>
-        <td>
-          <%= link_to profession_path(profession) do %> 
-          <%= profession.name %>
-          <% end %>
-        </td>
+        <th>
+          <p>職業一覧</p>
+        </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @professions.each do |profession| %>
+        <tr>
+          <td>
+            <%= link_to profession_path(profession) do %>
+            <%= profession.name %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

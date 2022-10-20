@@ -60,6 +60,8 @@ gem 'devise'
 gem 'enum_help'
 gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
+gem 'kaminari', '~> 0.17.0'
+gem 'bootstrap4-kaminari-views'
 
 group :production do
   gem 'mysql2'

@@ -1,8 +1,8 @@
 class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
-    @questions = Question.all
+    @questions = Question.all.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -11,7 +11,7 @@ class Admin::QuestionsController < ApplicationController
     #ログインユーザーの回答数
     @reply = Reply.new
   end
-  
+
   def destroy
     question = Question.find(params[:id])
     question.destroy

@@ -6,7 +6,7 @@ class Public::ProfessionsController < ApplicationController
   
   def show
     @profession = Profession.find(params[:id])
-    @questions = @profession.questions.all
+    @questions = @profession.questions.all.includes(:customer).order(created_at: :desc).page(params[:page])
   end
   
 end

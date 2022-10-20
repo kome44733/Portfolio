@@ -1,5 +1,5 @@
 class Public::QuestionsController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!,except: [:index,:show]
   before_action :correct_question,only: [:update,:destroy]
 
   def new
@@ -7,7 +7,10 @@ class Public::QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
+    @professions = Profession.all
+    @best_answers = Question.where(best_answer_id: nil).order(created_at: :desc).page(params[:page])
+    @no_best_answers = Question.where.not(best_answer_id: nil).order(created_at: :desc).page(params[:page])
+    @questions = Question.all.includes(:customer).order(created_at: :desc).page(params[:page])
   end
 
   def show

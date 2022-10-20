@@ -18,9 +18,8 @@ class Customer < ApplicationRecord
   end
 
 
-   # where('title LIKE ? OR body LIKE ?', "%#{keyword}%", "%#{keyword}%")
-
   validates :nickname, presence: true   ,length: { in: 1..15 }
 
   enum gender: { not_known: 0, male: 1, female: 2 }
+
 end
