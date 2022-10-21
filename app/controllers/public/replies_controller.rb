@@ -8,8 +8,12 @@ class Public::RepliesController < ApplicationController
     @reply.customer_id = current_customer.id
     @reply.answer_id = params[:answer_id]
     @reply.question_id = params[:question_id]
-    @reply.save
-    redirect_to question_path(@reply.question_id)
+    if @reply.save
+      redirect_to question_path(@reply.question_id)
+    else
+      flash[:alert] = "投稿に失敗しました。"
+      redirect_to question_path(@reply.question_id)
+    end
   end
   
   def destroy

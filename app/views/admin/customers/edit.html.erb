@@ -28,6 +28,13 @@
       </tr>
     </table>
   </div>
-  <%= f.submit "編集内容を保存",class: 'btn btn-outline-success' %>
+  <div class="row">
+    <div class="col">
+      <%= f.submit "編集内容を保存",class: 'btn btn-outline-success' %>
+    </div>
+    <div class="col">
+        <%= link_to "戻る",:back %>
+    </div>
+  </div>
 <% end %>
 </div>

@@ -1,4 +1,4 @@
 class Profession < ApplicationRecord
   has_many :questions
-  validates :profession, presence: true
+  validates :name, presence: true
 end

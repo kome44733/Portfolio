@@ -14,12 +14,16 @@ Rails.application.routes.draw do
 
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  
+  devise_scope :public do
+    # TIPS: ユーザー登録しっぱいのリダイレクトのエラーを防ぐ https://github.com/heartcombo/devise/blob/master/app/controllers/devise/registrations_controller.rb
+    get '/customers', to: 'public/registrations#new'
+  end
+  
   scope module: :public do
     root to: 'homes#top'
     get 'about' => "homes#about"
-
-
+  
     resources :customers,only:[:show, :update, :edit]
     get '/customers/:id/unsubscribe' => "customers#unsubscribe" , as:"unsubscribe"
     patch '/customers/:id/withdrawal' => "customers#withdrawal", as:"withdrawal"

@@ -59,19 +59,26 @@
                 <%= simple_format(answer.customer.nickname+"さん") %>
                 <%= simple_format(answer.answer) %>
                 <% if customer_signed_in? && (answer.customer_id == current_customer.id) %>
-                  <div class="col-12 text-right py-1">
-                    <%= link_to "Destroy", question_answer_path(@question,answer), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+                  <div class="col-12 text-right py-1" 
+                    <%= link_to question_answer_path(@question,answer), method: :delete, remote: true do %>
+                      <i class="fas fa-trash h4" style="color:#707070"></i>
+                    <% end %>
                   </div>
                 <% end %>
               </div>
+              
               <% answer.replies.each do |reply| %>
+              <div class="border-bottom">
                 <%= simple_format(reply.customer.nickname+"さん") %>
                 <%= simple_format(reply.reply) %>
                 <% if customer_signed_in? && (reply.customer_id == current_customer.id) %>
                   <div class="col-12 text-right py-1">
-                    <%= link_to "Destroy", question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+                    <%= link_to question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, remote: true do %>
+                      <i class="fas fa-trash h4" style="color:#707070"></i>
+                    <% end %>
                   </div>
                 <% end %>
+              </div>
               <% end %>
               <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
                 <% if customer_signed_in? && (answer.customer_id == current_customer.id || @question.customer_id == current_customer.id) &&  @question.best_answer_id.nil? %>

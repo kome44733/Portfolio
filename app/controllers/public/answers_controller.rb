@@ -6,8 +6,12 @@ class Public::AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answer = current_customer.answers.new(answer_params)
     @answer.question_id = @question.id
-    @answer.save
-    redirect_to question_path(@answer.question_id)
+    if @answer.save
+      redirect_to question_path(@answer.question_id)
+    else
+      flash[:alert] = "投稿に失敗しました。"
+      redirect_to question_path(@answer.question_id)
+    end
   end
   
   def destroy

@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/2b47545f71.js" crossorigin="anonymous"></script>
   </head>
-
   <body class="pb-5 mb-5">
     <header>
       <%if admin_signed_in? %>
@@ -22,10 +19,9 @@
         <%= render "layouts/before_login" %>
       <% end %>
     </header>
-    <div class="text-success"><h5><%=flash[:notice] %></h5></div>
-    <div class="text-danger"><h5><%=flash[:alert] %></h5></div>
-    &nbsp;
-    <%= yield %>
-    
+      <div class="text-success"><h5><%=flash[:notice] %></h5></div>
+      <div class="text-danger"><h5><%=flash[:alert] %></h5></div>
+      &nbsp;
+      <%= yield %>
   </body>
 </html>
