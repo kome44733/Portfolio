@@ -18,7 +18,7 @@ class Customer < ApplicationRecord
   end
 
 
-  validates :nickname, presence: true   ,length: { in: 1..15 }
+  validates :nickname, presence: true   ,length: { in: 1..8 }
 
   enum gender: { not_known: 0, male: 1, female: 2 }
 

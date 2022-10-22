@@ -35,10 +35,11 @@ class Public::QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.customer_id = current_customer.id
     if @question.save
+      flash[:notice] = "投稿に成功しました。"
       redirect_to questions_path
     else
       flash[:alert] = "投稿に失敗しました。"
-      render :new
+      redirect_back(fallback_location: root_path)
     end
   end
 

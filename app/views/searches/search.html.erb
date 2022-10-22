@@ -1,4 +1,5 @@
 <div class="container">
+  <h3 class="pb-3">検索結果</h3>
   <ul class="nav nav-tabs nav-fill" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">未解決の質問</a>
@@ -28,7 +29,9 @@
               <%= question.profession.name %>
             </td>
             <td>
-              <%= link_to question.post,question %>
+              <%= link_to question_path(question) do %>
+                <%= question.post.truncate(30) %>
+              <% end %>
             </td>
           </tr>
         </tbody>
@@ -56,7 +59,9 @@
               <%= question.profession.name %>
             </td>
             <td>
-              <%= link_to question.post,question %>
+              <%= link_to question_path(question) do %>
+                <%= question.post.truncate(30) %>
+              <% end %>
             </td>
           </tr>
         </tbody>

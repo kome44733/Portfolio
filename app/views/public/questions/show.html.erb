@@ -59,21 +59,22 @@
                 <%= simple_format(answer.customer.nickname+"さん") %>
                 <%= simple_format(answer.answer) %>
                 <% if customer_signed_in? && (answer.customer_id == current_customer.id) %>
-                  <div class="col-12 text-right py-1" 
-                    <%= link_to question_answer_path(@question,answer), method: :delete, remote: true do %>
+                  <div class="col-12 text-right py-1" >
+                    <%= link_to question_answer_path(@question,answer), method: :delete, data: {confirm: "返信された削除しますか？"} do %>
+
                       <i class="fas fa-trash h4" style="color:#707070"></i>
                     <% end %>
                   </div>
                 <% end %>
               </div>
-              
+
               <% answer.replies.each do |reply| %>
               <div class="border-bottom">
                 <%= simple_format(reply.customer.nickname+"さん") %>
                 <%= simple_format(reply.reply) %>
                 <% if customer_signed_in? && (reply.customer_id == current_customer.id) %>
                   <div class="col-12 text-right py-1">
-                    <%= link_to question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, remote: true do %>
+                    <%= link_to question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, data: {confirm: "削除しますか？"} do %>
                       <i class="fas fa-trash h4" style="color:#707070"></i>
                     <% end %>
                   </div>
