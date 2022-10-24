@@ -1,7 +1,7 @@
 <!--ログイン前ヘッダー（共通）-->
 <nav class ="navbar navbar-expand-lg navbar-light bg-info">
   <%= link_to root_path,class: "navbar-brand" do %>
-    <%= image_tag 'FUTURECAREER.png',size: "250x100" %>
+    <%= image_tag 'FUTURECAREER.png',size: "250x25" %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
         <%= link_to "職業一覧",professions_path,class: "nav-link"%>
       </li>
       <li class="nav-item">
-        <%= link_to "Q&A一覧",root_path,class: "nav-link"%>
+        <%= link_to "Q&A一覧",questions_path,class: "nav-link"%>
       </li>
       <li class="nav-item">
         <%= link_to "新規登録",new_customer_registration_path,class: "nav-link" %>

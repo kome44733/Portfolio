@@ -3,8 +3,8 @@ class Public::CustomersController < ApplicationController
   before_action :correct_customer, except: [:index]
   def show
     @customer = current_customer
-    @favorites = current_customer.favorites.all
-    @questions = current_customer.questions.all
+    @favorites = current_customer.favorites.all.page(params[:page])
+    @questions = current_customer.questions.all.page(params[:question])
   end
 
   def edit

@@ -11,7 +11,7 @@
     <div class="col-md-3 border text-white bg-dark ">
       <p class= "my-3">ニックネーム</p>
     </div>
-    <div class="col-md-9 border">
+    <div class="col-md-9 border text-break">
       <p class= "my-3"><%= @customer.nickname %></p>
     </div>
   </div>
@@ -27,7 +27,7 @@
     <div class="col-md-3 border text-white bg-dark ">
       <p class= "my-3">Email</p>
     </div>
-    <div class="col-md-9 border">
+    <div class="col-md-9 border text-break">
       <p class= "my-3"><%= @customer.email %></p>
     </div>
   </div>
@@ -56,16 +56,21 @@
         </div>
         <% @favorites.each do |favorite| %>
           <div class="row flex-nowrap">
-            <div class="col-md-3 col-sm-3 border py-2">
+            <div class="col-md-3 col-sm-3 border py-2 text-break">
               <%= favorite.question.profession.name %>
             </div>
-            <div class="col-md-9 col-sm-9 border py-2">
+            <div class="col-md-9 col-sm-9 border py-2 text-break">
               <%= link_to question_path(favorite.question.id) do %>
                 <%= favorite.question.post.truncate(20) %>
               <% end %>
             </div>
           </div>
         <%end%>
+        <div class="row">
+          <div class="col text-center">
+            <%= paginate @favorites, theme: 'twitter-bootstrap-4' %>
+          </div>
+        </div>  
       </div>
       <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
         <div class="row flex-nowrap">
@@ -78,10 +83,10 @@
         </div>
         <% @questions.each do |question| %>
           <div class="row flex-nowrap">
-            <div class="col-md-3 col-sm-3 border py-2">
+            <div class="col-md-3 col-sm-3 border py-2 text-break">
               <%= question.profession.name %>
             </div>
-            <div class="col-md-8 col-sm-8 border py-2">
+            <div class="col-md-8 col-sm-8 border py-2 text-break">
               <%= link_to question_path(question) do %>
                 <%= question.post.truncate(20) %>
               <% end %>
@@ -91,6 +96,11 @@
             </div>
           </div>
         <%end%>
+        <div class="row">
+          <div class="col text-center">
+            <%= paginate @questions, theme: 'twitter-bootstrap-4', param_name: "question" %>
+          </div>
+        </div>  
       </div>
     </div>    
   </div>      

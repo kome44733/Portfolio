@@ -16,3 +16,23 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(".nav-tabs").find("li a").last().click();
+
+var url = document.URL;
+var hash = url.substring(url.indexOf('#'));
+
+$(".nav-tabs").find("li a").each(function(key, val) {
+
+  if (hash == $(val).attr('href')) {
+
+    $(val).click();
+
+  }
+  $(val).click(function(ky, vl) {
+
+    console.log($(this).attr('href'));
+    location.hash = $(this).attr('href');
+  });
+
+});
