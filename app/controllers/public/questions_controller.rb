@@ -39,7 +39,8 @@ class Public::QuestionsController < ApplicationController
       redirect_to questions_path
     else
       flash[:alert] = "投稿に失敗しました。"
-      redirect_back(fallback_location: root_path)
+      @question = Question.new(question_params)
+      render :new
     end
   end
 
@@ -48,7 +49,7 @@ class Public::QuestionsController < ApplicationController
     question.destroy
     redirect_to request.referer
   end
-
+  
   private
   def correct_question
     @question = Question.find(params[:id])

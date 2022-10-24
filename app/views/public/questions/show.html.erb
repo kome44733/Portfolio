@@ -35,11 +35,11 @@
             <% if answer.question.best_answer_id == answer.id %>
         <thead class ="table-success">
           <tr>
-            <td>回答<%= (answer.customer.nickname+"さん""ベストアンサーに選ばれました") %>
+            <td><span class= "pr-3">回答</span><%= (answer.customer.nickname+"さん""ベストアンサーに選ばれました")%>
             <% else %>
         <thead class ="table-dark">
           <tr>
-            <td>回答<%= answer.customer.nickname+"さん" %>
+            <td><span class= "pr-3">回答</span><%= answer.customer.nickname+"さん" %>
             <% end %>
             </td>
             <td class ="text-right">
