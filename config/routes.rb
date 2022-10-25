@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   devise_for :customers, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions',
-    passwords: 'public/passwords'
   }
   # 管理者用
   # URL /admin/sign_in ...

@@ -42,93 +42,75 @@
       <a class="nav-link <%= @active2 %>" href="<%= customer_path(@customer.id, {tab: 2}) %>" role="tab" aria-selected="<%= !!@active2 %>">投稿した質問</a>
     </li>
   </ul>
-    <div>
-      <div class="tab <%= @active1 %>" role="tabpanel" aria-labelledby="item1-tab">
+  <div>
+    <div class="tab <%= @active1 %>" role="tabpanel" aria-labelledby="item1-tab">
+      <% @favorites.each do |favorite| %>
         <div class="row flex-nowrap">
-          <div class="col-md-3 col-sm-3 text-center text-white bg-dark">
-            <p class= "my-3">職業</p>
-          </div>
-          <div class="col-md-9 col-sm-9 text-center text-white bg-dark">
-            <p class= "my-3">質問内容</p>
-          </div>
-        </div>
-        <% @favorites.each do |favorite| %>
-          <div class="row flex-nowrap">
-            <div class="col-md-3 col-sm-3 border py-2 text-break">
-              <%= favorite.question.profession.name %>
-            </div>
-            <div class="col-md-9 col-sm-9 border py-2 text-break">
-              <%= link_to question_path(favorite.question.id) do %>
-                <%= favorite.question.post.truncate(20) %>
-              <% end %>
-            </div>
-          </div>
-        <%end%>
-        <div class="row">
-          <div class="col text-center">
-            <%= paginate @favorites, theme: 'twitter-bootstrap-4', params: { tab: 1 } %>
+          <div class="col-md-12 col-sm-12 border py-2 text-break">
+            <span class= "small"><%= favorite.question.profession.name %></span></br>
+            <%= link_to question_path(favorite.question.id) do %>
+              <%= favorite.question.post.truncate(40) %>
+            <% end %>
           </div>
         </div>
-      </div>
-      <div class="tab <%= @active2 %>" role="tabpanel" aria-labelledby="item2-tab">
-        <div class="row flex-nowrap">
-          <div class="col-md-3 col-sm-3 text-center text-white bg-dark">
-            <p class= "my-3">職業</p>
-          </div>
-          <div class="col-md-9 col-sm-9 text-center text-white bg-dark">
-            <p class= "my-3">質問内容</p>
-          </div>
-        </div>
-        <% @questions.each do |question| %>
-          <div class="row flex-nowrap">
-            <div class="col-md-3 col-sm-3 border py-2 text-break">
-              <%= question.profession.name %>
-            </div>
-            <div class="col-md-8 col-sm-8 border py-2 text-break">
-              <%= link_to question_path(question) do %>
-                <%= question.post.truncate(20) %>
-              <% end %>
-            </div>
-            <div class="col-md-1 col-sm-1 border py-2">
-              <%= link_to "削除", question_path(question), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
-            </div>
-          </div>
-        <%end%>
-        <div class="row">
-          <div class="col text-center">
-            <%= paginate @questions, theme: 'twitter-bootstrap-4',param_name: "question", params: { tab: 2 } %>
-          </div>
+      <%end%>
+      <div class="row">
+        <div class="col text-center">
+          <%= paginate @favorites, theme: 'twitter-bootstrap-4', params: { tab: 1 } %>
         </div>
       </div>
     </div>
+    <div class="tab <%= @active2 %>" role="tabpanel" aria-labelledby="item2-tab">
+      <% @questions.each do |question| %>
+        <div class="row border d-flex align-items-center">
+          <div class="col-md-11 col-sm-11 py-2 text-break">
+            <span class= "small"><%= question.profession.name %></span></br>
+            <%= link_to question_path(question) do %>
+              <%= question.post.truncate(40) %>
+            <% end %>
+          </div>
+          <div class="col-md-1 col-sm-1">
+            <%= link_to "削除", question_path(question), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
+          </div>
+        </div>
+      <%end%>
+      <div class="row">
+        <div class="col text-center">
+          <%= paginate @questions, theme: 'twitter-bootstrap-4',param_name: "question", params: { tab: 2 } %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
- 
 
 
 
+  .nav-fill {
+  height: 40px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  font-size: 16px;
+  color: #565656;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  }
 
   .tab {
-    display: none; 
+    display: none;
     width: 100%;
-    padding: 10px;
     cursor: pointer;
   }
 
   .tab.active { display: block; }
-  
-  .tab:hover{
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
-  transform: translateY(-1px);
-  }
-  
-  
-  .nav-link.active { 
+
+
+  .nav-link.active {
     color: #FFF;
     background: #19b5d1;
     transition: all 0.2s ease-in-out;
-    
+
   }
 
 </style>
