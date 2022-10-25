@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr class ="border">
-          <td colspan = "2">
+          <td colspan = "2 text-break">
             <%= simple_format(@question.customer.nickname+"さん") %>
             <%= simple_format(@question.post) %>
             <% if customer_signed_in? && (@question.customer_id != current_customer.id && @answer_count <= 0) %>

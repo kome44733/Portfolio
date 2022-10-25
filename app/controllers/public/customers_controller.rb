@@ -5,6 +5,13 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @favorites = current_customer.favorites.all.page(params[:page])
     @questions = current_customer.questions.all.page(params[:question])
+    @active1 = nil
+    @active2 = nil
+    if params[:tab].to_i == 2
+      @active2 = "active"
+    else
+      @active1 = "active"
+    end
   end
 
   def edit

@@ -21,7 +21,6 @@ class Public::QuestionsController < ApplicationController
         @answer_count = Answer.where(question_id: params[:id]).where(customer_id: current_customer.id).count
       end
     @reply = Reply.new
-
   end
 
   def update
@@ -40,6 +39,7 @@ class Public::QuestionsController < ApplicationController
     else
       flash[:alert] = "投稿に失敗しました。"
       @question = Question.new(question_params)
+      @selected_profession_id = question_params[:profession_id]
       render :new
     end
   end
@@ -49,7 +49,7 @@ class Public::QuestionsController < ApplicationController
     question.destroy
     redirect_to request.referer
   end
-  
+
   private
   def correct_question
     @question = Question.find(params[:id])

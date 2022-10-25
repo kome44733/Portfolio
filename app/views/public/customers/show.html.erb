@@ -33,19 +33,17 @@
   </div>
 </div>
 
-
 <div class="container mt-5">
-  <ul class="nav nav-tabs nav-fill row" role="tablist">
+  <ul class="nav nav-fill row" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">お気に入りの質問</a>
+      <a class="nav-link <%= @active1 %>" href="<%= customer_path(@customer.id, {tab: 1}) %>" role="tab" aria-selected="<%= !!@active1 %>">お気に入りの質問</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">投稿した質問</a>
+      <a class="nav-link <%= @active2 %>" href="<%= customer_path(@customer.id, {tab: 2}) %>" role="tab" aria-selected="<%= !!@active2 %>">投稿した質問</a>
     </li>
   </ul>
-  <div class="tab-content">
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+    <div>
+      <div class="tab <%= @active1 %>" role="tabpanel" aria-labelledby="item1-tab">
         <div class="row flex-nowrap">
           <div class="col-md-3 col-sm-3 text-center text-white bg-dark">
             <p class= "my-3">職業</p>
@@ -68,11 +66,11 @@
         <%end%>
         <div class="row">
           <div class="col text-center">
-            <%= paginate @favorites, theme: 'twitter-bootstrap-4' %>
+            <%= paginate @favorites, theme: 'twitter-bootstrap-4', params: { tab: 1 } %>
           </div>
-        </div>  
+        </div>
       </div>
-      <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+      <div class="tab <%= @active2 %>" role="tabpanel" aria-labelledby="item2-tab">
         <div class="row flex-nowrap">
           <div class="col-md-3 col-sm-3 text-center text-white bg-dark">
             <p class= "my-3">職業</p>
@@ -98,11 +96,39 @@
         <%end%>
         <div class="row">
           <div class="col text-center">
-            <%= paginate @questions, theme: 'twitter-bootstrap-4', param_name: "question" %>
+            <%= paginate @questions, theme: 'twitter-bootstrap-4',param_name: "question", params: { tab: 2 } %>
           </div>
-        </div>  
+        </div>
       </div>
-    </div>    
-  </div>      
+    </div>
 </div>
 
+<style>
+ 
+
+
+
+
+  .tab {
+    display: none; 
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .tab.active { display: block; }
+  
+  .tab:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+  }
+  
+  
+  .nav-link.active { 
+    color: #FFF;
+    background: #19b5d1;
+    transition: all 0.2s ease-in-out;
+    
+  }
+
+</style>
