@@ -1,53 +1,24 @@
-
-<ul class="nav nav-tabs nav-fill row" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">未解決の質問</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">解決済みの質問</a>
-  </li>
-</ul>
 <div class="tab-content">
-  <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-    <div class="row flex-nowrap">
-      <div class="col-md-3 col-sm-3 text-center text-white bg-dark text-break">
-        <p class= "my-3">職業</p>
-      </div>
-      <div class="col-md-9 col-sm-9 text-center text-white bg-dark text-break">
-        <p class= "my-3">質問内容</p>
-      </div>
-    </div>
+  <div class="tab <%= @active1 %>" role="tabpanel" aria-labelledby="item1-tab">
     <% @best_answers.each do |question| %>
       <div class="row flex-nowrap">
-        <div class="col-md-3 col-sm-3 border py-2 text-break">
-          <%= question.profession.name%>
-        </div>
-        <div class="col-md-9 col-sm-9 border py-2 text-break">
+        <div class="col-md-12 col-sm-12 border py- text-break">
+          <span class= "small"> <%= question.profession.name%></span></br>
           <%= link_to question_path(question) do %>
-            <%= question.post.truncate(30) %>
+            <%= question.post.truncate(40) %>
           <% end %>
         </div>
       </div>
     <%end%>
     <%= paginate @best_answers, theme: 'twitter-bootstrap-4' %>
   </div>
-  <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-    <div class="row flex-nowrap">
-      <div class="col-md-3 col-sm-3 text-center text-white bg-dark text-break">
-        <p class= "my-3">職業</p>
-      </div>
-      <div class="col-md-9 col-sm-9 text-center text-white bg-dark text-break">
-        <p class= "my-3">質問内容</p>
-      </div>
-    </div>
+  <div class="tab <%= @active2 %>" role="tabpanel" aria-labelledby="item2-tab">
     <% @no_best_answers.each do |question| %>
       <div class="row flex-nowrap">
-        <div class="col-md-3 col-sm-3 border py-2 text-break">
-          <%= question.profession.name %>
-        </div>
-        <div class="col-md-9 col-sm-9 border py-2 text-break">
+        <div class="col-md-12 col-sm-12 border py-2 text-break">
+          <span class= "small"><%= question.profession.name %></span></br>
           <%= link_to question_path(question) do %>
-            <%= question.post.truncate(30) %>
+            <%= question.post.truncate(40) %>
           <% end %>
         </div>
       </div>

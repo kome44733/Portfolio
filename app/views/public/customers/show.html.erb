@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row flex-nowrap">
-    <div class="col-md-3 border text-white bg-dark ">
+    <div class="col-md-3 border color ">
       <p class= "my-3">ニックネーム</p>
     </div>
     <div class="col-md-9 border text-break">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="row flex-nowrap">
-    <div class="col-md-3 border text-white bg-dark ">
+    <div class="col-md-3 border color ">
       <p class= "my-3">性別</p>
     </div>
     <div class="col-md-9 border">
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="row flex-nowrap">
-    <div class="col-md-3 border text-white bg-dark ">
+    <div class="col-md-3 border color ">
       <p class= "my-3">Email</p>
     </div>
     <div class="col-md-9 border text-break">
@@ -64,7 +64,13 @@
       <% @questions.each do |question| %>
         <div class="row border d-flex align-items-center">
           <div class="col-md-11 col-sm-11 py-2 text-break">
-            <span class= "small"><%= question.profession.name %></span></br>
+            <span class= "small"><%= question.profession.name %>
+              <% if question.best_answer_id.nil? %>
+                ：未回答
+              <% else %>
+                ：回答済み
+              <% end %>
+            </span></br>
             <%= link_to question_path(question) do %>
               <%= question.post.truncate(40) %>
             <% end %>
@@ -82,35 +88,3 @@
     </div>
   </div>
 </div>
-
-<style>
-
-
-
-  .nav-fill {
-  height: 40px;
-  border-bottom: 3px solid #5ab4bd;
-  background-color: #d9d9d9;
-  font-size: 16px;
-  color: #565656;
-  font-weight: bold;
-  transition: all 0.2s ease;
-  }
-
-  .tab {
-    display: none;
-    width: 100%;
-    cursor: pointer;
-  }
-
-  .tab.active { display: block; }
-
-
-  .nav-link.active {
-    color: #FFF;
-    background: #19b5d1;
-    transition: all 0.2s ease-in-out;
-
-  }
-
-</style>

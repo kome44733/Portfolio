@@ -14,13 +14,13 @@
       <tbody>
         <tr class ="border">
           <td colspan = "2">
-            <%= simple_format(@question.customer.nickname+"さん") %>
+            <span class= "small"><%= simple_format(@question.customer.nickname+"さん") %></span>
             <span class= "text-break"><%= simple_format(@question.post) %></span>
             <% if customer_signed_in? && (@question.customer_id != current_customer.id && @answer_count <= 0) %>
               <%= form_with model:[@question,@answer],method: :post do |f| %>
                 <% if @question.best_answer_id.nil? %>
                   <%= f.text_area :answer,placeholder:"回答を入力してください",class: "form-control" %>
-                  <%= f.submit "送信する"%>
+                  <div class="text-right"><%= f.submit "送信する" , class: "btn btn-sm btn-outline-dark mt-2"%></div>
                 <% end %>
               <% end %>
             <% end %>
@@ -35,18 +35,18 @@
             <% if answer.question.best_answer_id == answer.id %>
         <thead class ="table-success">
           <tr>
-            <td><span class= "pr-3">回答</span><%= (answer.customer.nickname+"さん""ベストアンサーに選ばれました")%>
+            <td><span class= "pr-3">回答</span><%= ("ベストアンサーに選ばれました")%>
             <% else %>
         <thead class ="table-dark">
           <tr>
-            <td><span class= "pr-3">回答</span><%= answer.customer.nickname+"さん" %>
+            <td><span class= "pr-3">回答</span>
             <% end %>
             </td>
             <td class ="text-right">
               <% if customer_signed_in? && (@question.customer_id == current_customer.id && @question.best_answer_id.nil?) %>
                 <%= form_with model: @question, local: true do |form| %>
                   <%= form.hidden_field :best_answer_id, value: answer.id %>
-                  <%= form.submit 'ベストアンサー', data: {confirm: "ベストアンサーに選択すると投稿に回答、返信ができなくなります。それでもよろしいですか？"}%>
+                  <%= form.submit 'ベストアンサーに選ぶ', data: {confirm: "ベストアンサーに選択すると投稿に回答、返信ができなくなります。それでもよろしいですか？"}%>
                 <% end %>
               <% end %>
             </td>
@@ -56,7 +56,7 @@
           <tr>
             <td class ="border" colspan = "2">
               <div class="border">
-                <%= simple_format(answer.customer.nickname+"さん") %>
+                <span class= "small"><%= simple_format(answer.customer.nickname+"さん") %></span>
                 <span class= "text-break"><%= simple_format(answer.answer) %></span>
                 <% if @question.best_answer_id.nil? && customer_signed_in? && (answer.customer_id == current_customer.id) %>
                   <div class="col-12 text-right py-1" >
@@ -68,7 +68,7 @@
               </div>
               <% answer.replies.each do |reply| %>
               <div class="border-bottom">
-                <%= simple_format(reply.customer.nickname+"さん") %>
+                <span class= "small"><%= simple_format(reply.customer.nickname+"さん") %></span>
                 <span class= "text-break"><%= simple_format(reply.reply) %></span>
                 <% if @question.best_answer_id.nil? && customer_signed_in? && (reply.customer_id == current_customer.id) %>
                   <div class="col-12 text-right py-1">
@@ -81,8 +81,8 @@
               <% end %>
               <%= form_with model: @reply, url: question_answer_replies_path(@question, answer), method: :post do |f| %>
                 <% if customer_signed_in? && (answer.customer_id == current_customer.id || @question.customer_id == current_customer.id) && @question.best_answer_id.nil? %>
-                  <%= f.text_area :reply,placeholder:"返信を入力してください",class: "form-control" %>
-                  <%= f.submit "送信する"%>
+                  <div class="mt-2"><%= f.text_area :reply,placeholder:"返信を入力してください",class: "form-control" %></div>
+                  <div class="text-right"><%= f.submit "送信する" , class: "btn btn-sm btn-outline-dark mt-2"%></div>
                 <% end %>
               <% end %>
             </td>

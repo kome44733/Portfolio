@@ -3,6 +3,14 @@
     <h3 class="pb-3"><%= @profession.name %> Q&A一覧</h3>
     <%= render "layouts/search" %>
     </br>
+    <ul class="nav nav-fill row" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link <%= @active1 %>" href="<%= profession_path(@profession.id, {tab: 1}) %>" role="tab" aria-selected="<%= !!@active1 %>">未解決の質問</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%= @active2 %>" href="<%= profession_path(@profession.id, {tab: 2}) %>" role="tab" aria-selected="<%= !!@active2 %>">解決済みの質問</a>
+      </li>
+    </ul>
     <%= render "layouts/questions" %>
   </div>
 </div>
