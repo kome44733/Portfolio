@@ -1,0 +1,38 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+// javascript配下でscss管理する場合、画像は以下の書式で指定する
+// .top_image {
+//   background-image: url("../images/top.jpg");
+// }
+
+.nav-fill {
+height: 40px;
+border-bottom: 3px solid #5ab4bd;
+background-color: #d9d9d9;
+font-size: 16px;
+color: #565656;
+font-weight: bold;
+transition: all 0.2s ease;
+}
+
+.tab {
+  display: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.tab.active { display: block; }
+
+
+.nav-link.active {
+  color: #FFF;
+  background: #19b5d1;
+  transition: all 0.2s ease-in-out;
+
+}
+
+.color{
+  background-color: #d9d9d9;
+}
