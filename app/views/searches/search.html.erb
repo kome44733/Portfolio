@@ -10,7 +10,7 @@
         <div class="col-md-12 col-sm-12 border py-2 text-break">
           <span class= "small"><%= question.profession.name %>
             <% if question.best_answer_id.nil? %>
-              ：回答件数<%= question.answers.count %>
+              ：回答<%= question.answers.count %>件
             <% else %>
               ：解決済み
             <% end %>
