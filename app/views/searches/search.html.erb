@@ -8,7 +8,13 @@
     <% @questions.each do |question| %>
       <div class="row flex-nowrap">
         <div class="col-md-12 col-sm-12 border py-2 text-break">
-          <span class= "small"><%= question.profession.name %></span></br>
+          <span class= "small"><%= question.profession.name %>
+            <% if question.best_answer_id.nil? %>
+              ：回答件数<%= question.answers.count %>
+            <% else %>
+              ：解決済み
+            <% end %>
+          </span></br>
           <%= link_to question_path(question.id) do %>
             <%= question.post.truncate(40) %>
           <% end %>

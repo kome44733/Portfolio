@@ -65,10 +65,8 @@
         <div class="row border d-flex align-items-center">
           <div class="col-md-11 col-sm-11 py-2 text-break">
             <span class= "small"><%= question.profession.name %>
-              <% if question.answers.count == 0 %>
-                ：未回答
-              <% elsif question.best_answer_id.nil? %>
-                ：回答済み
+              <% if question.best_answer_id.nil? %>
+                ：回答件数<%= question.answers.count %>
               <% else %>
                 ：解決済み
               <% end %>

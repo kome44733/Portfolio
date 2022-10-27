@@ -3,7 +3,10 @@
     <% @best_answers.each do |question| %>
       <div class="row flex-nowrap">
         <div class="col-md-12 col-sm-12 border py- text-break">
-          <span class= "small"> <%= question.profession.name%></span></br>
+          <span class= "small">
+            <%= question.profession.name%>
+              ：回答件数<%= question.answers.count %>
+            </span></br>
           <%= link_to question_path(question) do %>
             <%= question.post.truncate(40) %>
           <% end %>
