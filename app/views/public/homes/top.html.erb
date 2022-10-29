@@ -30,7 +30,7 @@
             <a class="nav-link <%= @active2 %>" href="<%= root_path({tab: 2}) %>" role="tab" aria-selected="<%= !!@active2 %>">解決済みの質問</a>
           </li>
         </ul>
-        <%= render "/layouts/questions",questions: @questions %>
+        <%= render "/layouts/questions",best_answers: @best_answers, no_best_answers: @no_best_answers, active1: @active1, active2: @active2 %>
       </div>
     </div>
     <div class="col-md-4">

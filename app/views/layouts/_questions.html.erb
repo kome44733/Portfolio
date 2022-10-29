@@ -1,6 +1,6 @@
 <div class="tab-content">
-  <div class="tab <%= @active1 %>" role="tabpanel" aria-labelledby="item1-tab">
-    <% @best_answers.each do |question| %>
+  <div class="tab <%= active1 %>" role="tabpanel" aria-labelledby="item1-tab">
+    <% best_answers.each do |question| %>
       <div class="row flex-nowrap">
         <div class="col-md-12 col-sm-12 border py- text-break">
           <span class= "small">
@@ -13,10 +13,10 @@
         </div>
       </div>
     <%end%>
-    <%= paginate @best_answers, theme: 'twitter-bootstrap-4' %>
+    <%= paginate best_answers, theme: 'twitter-bootstrap-4' %>
   </div>
-  <div class="tab <%= @active2 %>" role="tabpanel" aria-labelledby="item2-tab">
-    <% @no_best_answers.each do |question| %>
+  <div class="tab <%= active2 %>" role="tabpanel" aria-labelledby="item2-tab">
+    <% no_best_answers.each do |question| %>
       <div class="row flex-nowrap">
         <div class="col-md-12 col-sm-12 border py-2 text-break">
           <span class= "small"><%= question.profession.name %></span></br>
@@ -28,7 +28,7 @@
     <%end%>
     <div class="row">
       <div class="col text-center">
-        <%= paginate @no_best_answers, theme: 'twitter-bootstrap-4' %>
+        <%= paginate no_best_answers, theme: 'twitter-bootstrap-4' %>
       </div>
     </div>  
   </div>
