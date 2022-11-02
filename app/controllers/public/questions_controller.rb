@@ -31,7 +31,6 @@ class Public::QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    #@question.best_answer_id = params[:question][:best_answer_id]
     @question.update(best_answer_params)
     redirect_to question_path(@question.id)
   end
@@ -40,7 +39,7 @@ class Public::QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.score = Language.get_data(question_params[:post])
     @question.customer_id = current_customer.id
-    if question.save
+    if @question.save
       flash[:notice] = "投稿に成功しました。"
       redirect_to questions_path
     else
@@ -63,7 +62,6 @@ class Public::QuestionsController < ApplicationController
     unless @question.customer_id == current_customer.id
       redirect_to customer_path(current_customer)
     end
-    # redirect_to customer_path(current_customer) unless @question.customer_id == current_customer.id
   end
 
   def question_params
