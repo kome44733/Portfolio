@@ -17,3 +17,11 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+$(document).on('turbolinks:load', function() {
+  $('.nonMasked').hide();
+  $(document).on('click', '#showButton', function(){
+    const id = $(this)[0].classList[0].split('-')[1]
+    $(`#text-${id}`).show();
+    $(`#mask-${id}`).hide();
+  });
+});

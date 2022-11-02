@@ -57,7 +57,17 @@
             <td class ="border" colspan = "2">
               <div class="border">
                 <span class= "small"><%= simple_format(answer.customer.nickname+"さん") %></span>
-                <span class= "text-break"><%= simple_format(answer.answer) %></span>
+                <% if answer.score >= -0.2 %>
+                  <span class= "text-break"><%= simple_format(answer.answer) %></span>
+                <% else %>
+                  <div id="text-<%= answer.id %>" class="nonMasked">
+                    <span class= "text-break"><%= simple_format(answer.answer) %></span>
+                  </div>
+                  <div id="mask-<%= answer.id %>">
+                    センシティブな内容が含まれている可能性があります。
+                    <span id="showButton" class="button-<%= answer.id %>"><i class="far fa-eye"></i></span>
+                  </div>
+                <% end %>
                 <% if @question.best_answer_id.nil? && customer_signed_in? && (answer.customer_id == current_customer.id) %>
                   <div class="col-12 text-right py-1" >
                     <%= link_to question_answer_path(@question,answer), method: :delete, data: {confirm: "返信された削除しますか？"} do %>
@@ -69,7 +79,17 @@
               <% answer.replies.each do |reply| %>
               <div class="border-bottom">
                 <span class= "small"><%= simple_format(reply.customer.nickname+"さん") %></span>
-                <span class= "text-break"><%= simple_format(reply.reply) %></span>
+                <% if reply.score >= -0.2 %>
+                  <span class= "text-break"><%= simple_format(reply.reply) %></span>
+                <% else %>
+                <div id="text-<%= reply.id %>" class="nonMasked">
+                  <span class= "text-break"><%= simple_format(reply.reply) %></span>
+                </div>
+                <div id="mask-<%= reply.id %>">
+                  センシティブな内容が含まれている可能性があります。
+                  <span id="showButton" class="button-<%= reply.id %>"><i class="far fa-eye"></i></span>
+                </div>
+                <% end %>
                 <% if @question.best_answer_id.nil? && customer_signed_in? && (reply.customer_id == current_customer.id) %>
                   <div class="col-12 text-right py-1">
                     <%= link_to question_answer_reply_path(@question,reply.answer_id,reply.id), method: :delete, data: {confirm: "削除しますか？"} do %>

@@ -5,6 +5,7 @@ class Public::AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = current_customer.answers.new(answer_params)
+    @answer.score = Language.get_data(answer_params[:answer])
     @answer.question_id = @question.id
     if @answer.save
       redirect_to question_path(@answer.question_id)

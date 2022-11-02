@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_13_051918) do
+ActiveRecord::Schema.define(version: 2022_11_02_043930) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_10_13_051918) do
     t.integer "profession_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "score", precision: 5, scale: 3
   end
 
   create_table "customers", force: :cascade do |t|
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2022_10_13_051918) do
     t.integer "best_answer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "score", precision: 5, scale: 3
   end
 
   create_table "replies", force: :cascade do |t|
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(version: 2022_10_13_051918) do
     t.text "reply"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "score", precision: 5, scale: 3
   end
 
 end

@@ -5,6 +5,7 @@ class Public::RepliesController < ApplicationController
   
   def create
     @reply = Reply.new(reply_params)
+    @reply.score = Language.get_data(reply_params[:reply])
     @reply.customer_id = current_customer.id
     @reply.answer_id = params[:answer_id]
     @reply.question_id = params[:question_id]

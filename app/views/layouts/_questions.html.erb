@@ -6,9 +6,21 @@
           <span class= "small">
             <%= question.profession.name%>
               ：回答<%= question.answers.count %>件
-            </span></br>
-          <%= link_to question_path(question) do %>
-            <%= question.post.truncate(40) %>
+          </span></br>
+          <% if question.score >= -0.2 %>
+            <%= link_to question_path(question) do %>
+              <%= question.post.truncate(40) %>
+            <% end %>
+          <% else %>
+            <div id="text-<%= question.id %>" class="nonMasked">
+              <%= link_to question_path(question),data: {"turbolinks" => false} do %>
+                <%= question.post.truncate(40) %>
+              <% end %>
+            </div>
+            <div id="mask-<%= question.id %>">
+              センシティブな内容が含まれている可能性があります。
+            <span id="showButton" class="button-<%= question.id %>"><i class="far fa-eye"></i></span>
+            </div>
           <% end %>
         </div>
       </div>
@@ -30,6 +42,6 @@
       <div class="col text-center">
         <%= paginate no_best_answers, theme: 'twitter-bootstrap-4' %>
       </div>
-    </div>  
+    </div>
   </div>
 </div>

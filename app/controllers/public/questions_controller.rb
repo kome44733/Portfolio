@@ -38,8 +38,9 @@ class Public::QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @question.score = Language.get_data(question_params[:post])
     @question.customer_id = current_customer.id
-    if @question.save
+    if question.save
       flash[:notice] = "投稿に成功しました。"
       redirect_to questions_path
     else
