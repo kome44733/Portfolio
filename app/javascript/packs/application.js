@@ -23,5 +23,12 @@ $(document).on('turbolinks:load', function() {
     const id = $(this)[0].classList[0].split('-')[1]
     $(`#text-${id}`).show();
     $(`#mask-${id}`).hide();
+    
+  });
+  $('.nonMasked').hide();
+  $(document).on('click', '#showButton1', function(){
+    const id = $(this)[0].classList[0].split('-')[1]
+    $(`#text1-${id}`).show();
+    $(`#mask1-${id}`).hide();
   });
 });
