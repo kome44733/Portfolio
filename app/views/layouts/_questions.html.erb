@@ -32,8 +32,20 @@
       <div class="row flex-nowrap">
         <div class="col-md-12 col-sm-12 border py-2 text-break">
           <span class= "small"><%= question.profession.name %></span></br>
-          <%= link_to question_path(question) do %>
-            <%= question.post.truncate(40) %>
+          <% if question.score >= -0.2 %>
+            <%= link_to question_path(question) do %>
+              <%= question.post.truncate(40) %>
+            <% end %>
+          <% else %>
+            <div id="text-<%= question.id %>" class="nonMasked">
+              <%= link_to question_path(question),data: {"turbolinks" => false} do %>
+                <%= question.post.truncate(40) %>
+              <% end %>
+            </div>
+            <div id="mask-<%= question.id %>">
+              センシティブな内容が含まれている可能性があります。
+            <span id="showButton" class="button-<%= question.id %>"><i class="far fa-eye"></i></span>
+            </div>
           <% end %>
         </div>
       </div>
