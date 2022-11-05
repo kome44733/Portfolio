@@ -1,11 +1,13 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:index]
   before_action :correct_customer, except: [:index]
-  
+
   def show
     @customer = current_customer
     @favorites = current_customer.favorites.all.page(params[:page])
     @questions = current_customer.questions.all.page(params[:question])
+    answer_ids = @customer.answers.pluck(:id)
+    @best_answer_questions = Question.where(best_answer_id: answer_ids)
     @active1 = nil
     @active2 = nil
     if params[:tab].to_i == 2
