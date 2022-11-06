@@ -1,5 +1,4 @@
 class Public::ProfessionsController < ApplicationController
-
   def index
     @professions = Profession.all
   end
@@ -16,5 +15,4 @@ class Public::ProfessionsController < ApplicationController
       @active1 = "active"
     end
   end
-
 end

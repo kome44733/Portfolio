@@ -1,8 +1,7 @@
 class Public::RepliesController < ApplicationController
-  
   before_action :authenticate_customer!
-  before_action :correct_reply,only: [:destroy]
-  
+  before_action :correct_reply, only: [:destroy]
+
   def create
     @reply = Reply.new(reply_params)
     @reply.score = Language.get_data(reply_params[:reply])
@@ -16,24 +15,23 @@ class Public::RepliesController < ApplicationController
       redirect_to question_path(@reply.question_id)
     end
   end
-  
+
   def destroy
     @reply = Reply.find(params[:id])
     @reply.destroy
     redirect_to request.referer
   end
-  
-  
+
+
   private
-  
-  def correct_reply
-      @reply= Reply.find(params[:id])
-    unless @reply.customer.id == current_customer.id
-      redirect_to customer_path(current_customer)
+    def correct_reply
+      @reply = Reply.find(params[:id])
+      unless @reply.customer.id == current_customer.id
+        redirect_to customer_path(current_customer)
+      end
     end
-  end
-  
-  def reply_params
-    params.require(:reply).permit(:reply)
-  end
+
+    def reply_params
+      params.require(:reply).permit(:reply)
+    end
 end

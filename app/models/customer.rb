@@ -14,12 +14,11 @@ class Customer < ApplicationRecord
   end
 
   def self.search(word)
-    where("nickname LIKE ? OR email LIKE ?","%#{word}%","%#{word}%")
+    where("nickname LIKE ? OR email LIKE ?", "%#{word}%", "%#{word}%")
   end
 
 
-  validates :nickname, presence: true   ,length: { in: 1..15 }
+  validates :nickname, presence: true, length: { in: 1..15 }
 
   enum gender: { not_known: 0, male: 1, female: 2 }
-
 end

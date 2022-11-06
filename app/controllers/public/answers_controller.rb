@@ -1,7 +1,7 @@
 class Public::AnswersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :correct_answer,only: [:destroy]
-  
+  before_action :correct_answer, only: [:destroy]
+
   def create
     @question = Question.find(params[:question_id])
     @answer = current_customer.answers.new(answer_params)
@@ -14,24 +14,23 @@ class Public::AnswersController < ApplicationController
       redirect_to question_path(@answer.question_id)
     end
   end
-  
+
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy
     redirect_to request.referer
   end
-  
-  
+
+
   private
-  def correct_answer
+    def correct_answer
       @answer = Answer.find(params[:id])
-    unless @answer.customer.id == current_customer.id
-      redirect_to customer_path(current_customer)
+      unless @answer.customer.id == current_customer.id
+        redirect_to customer_path(current_customer)
+      end
     end
-  end
-  
-  def answer_params
-    params.require(:answer).permit(:answer)
-  end
-  
+
+    def answer_params
+      params.require(:answer).permit(:answer)
+    end
 end

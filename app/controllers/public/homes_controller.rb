@@ -11,5 +11,4 @@ class Public::HomesController < ApplicationController
       @active1 = "active"
     end
   end
-
 end

@@ -1,6 +1,6 @@
 class Public::QuestionsController < ApplicationController
-  before_action :authenticate_customer!,except: [:index,:show]
-  before_action :correct_question,only: [:update,:destroy]
+  before_action :authenticate_customer!, except: [:index, :show]
+  before_action :correct_question, only: [:update, :destroy]
 
   def new
     @question = Question.new
@@ -22,10 +22,10 @@ class Public::QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
-    #ログインユーザーの回答数
-      if customer_signed_in?
-        @answer_count = Answer.where(question_id: params[:id]).where(customer_id: current_customer.id).count
-      end
+    # ログインユーザーの回答数
+    if customer_signed_in?
+      @answer_count = Answer.where(question_id: params[:id]).where(customer_id: current_customer.id).count
+    end
     @reply = Reply.new
   end
 
@@ -57,17 +57,17 @@ class Public::QuestionsController < ApplicationController
   end
 
   private
-  def correct_question
-    @question = Question.find(params[:id])
-    unless @question.customer_id == current_customer.id
-      redirect_to customer_path(current_customer)
+    def correct_question
+      @question = Question.find(params[:id])
+      unless @question.customer_id == current_customer.id
+        redirect_to customer_path(current_customer)
+      end
     end
-  end
 
-  def question_params
-    params.require(:question).permit(:post, :profession_id, :is_resolution, :best_answer_id)
-  end
-  def best_answer_params
-    params.require(:question).permit(:best_answer_id)
-  end
+    def question_params
+      params.require(:question).permit(:post, :profession_id, :is_resolution, :best_answer_id)
+    end
+    def best_answer_params
+      params.require(:question).permit(:best_answer_id)
+    end
 end

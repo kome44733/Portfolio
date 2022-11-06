@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
   before_action :authenticate_customer!, only: %i[search]
   def search
     if params[:profession].present?
-      @questions = Question.searchProfession(params[:word],params[:profession]).order(created_at: :desc).page(params[:page])
+      @questions = Question.searchProfession(params[:word], params[:profession]).order(created_at: :desc).page(params[:page])
     else
       @questions = Question.search(params[:word]).order(created_at: :desc).page(params[:page])
     end
@@ -20,4 +20,3 @@ class SearchesController < ApplicationController
     @word = params[:word]
   end
 end
-

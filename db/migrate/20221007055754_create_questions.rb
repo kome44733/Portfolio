@@ -4,8 +4,8 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       t.text :post
       t.integer :customer_id
       t.integer :profession_id
-      t.integer :best_answer_id 
-      
+      t.integer :best_answer_id
+
       t.timestamps
     end
   end

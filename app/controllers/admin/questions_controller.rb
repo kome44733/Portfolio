@@ -8,7 +8,7 @@ class Admin::QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
-    #ログインユーザーの回答数
+    # ログインユーザーの回答数
     @reply = Reply.new
   end
 

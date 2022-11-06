@@ -1,6 +1,6 @@
 class Admin::ProfessionsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @profession   = Profession.new
     @professions  = Profession.all
@@ -31,7 +31,7 @@ class Admin::ProfessionsController < ApplicationController
   end
 
   private
-  def profession_params
-    params.require(:profession).permit(:name)
-  end
+    def profession_params
+      params.require(:profession).permit(:name)
+    end
 end

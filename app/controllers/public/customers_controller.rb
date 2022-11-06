@@ -43,7 +43,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def correct_customer
-      @customer= Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
     unless @customer.id == current_customer.id
       redirect_to customer_path(current_customer)
     end
@@ -56,8 +56,7 @@ class Public::CustomersController < ApplicationController
   end
 
   private
-
-  def customer_params
-    params.require(:customer).permit(:nickname, :email)
-  end
+    def customer_params
+      params.require(:customer).permit(:nickname, :email)
+    end
 end

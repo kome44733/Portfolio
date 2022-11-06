@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2022_11_02_043930) do
-
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -81,5 +80,4 @@ ActiveRecord::Schema.define(version: 2022_11_02_043930) do
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "score", precision: 5, scale: 3
   end
-
 end
