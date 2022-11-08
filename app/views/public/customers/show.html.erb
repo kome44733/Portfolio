@@ -31,7 +31,14 @@
       <p class= "my-3"><%= @customer.email %></p>
     </div>
   </div>
-  <div class= "row">ベストアンサーに選ばれた回数：<%= @best_answer_questions.size %></div>
+  <div class="row flex-nowrap">
+    <div class="col-md-3 border color ">
+      <p class= "my-3">ベストアンサーに選ばれた回数</p>
+    </div>
+    <div class="col-md-9 border">
+      <p class= "my-3"><%= @best_answer_questions.size %></p>
+    </div>
+  </div>
 </div>
 
 <div class="container mt-5">
