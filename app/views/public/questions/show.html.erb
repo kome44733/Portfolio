@@ -14,7 +14,9 @@
       <tbody>
         <tr class ="border">
           <td colspan = "2">
-            <span class= "small"><%= simple_format(@question.customer.nickname+"さん") %></span>
+            <%= link_to customer_path(@question.customer_id) do %>
+              <span class= "small"><%= simple_format(@question.customer.nickname+"さん") %></span>
+            <% end %>
             <span class= "text-break"><%= simple_format(@question.post) %></span>
             <% if customer_signed_in? && (@question.customer_id != current_customer.id && @answer_count <= 0) %>
               <%= form_with model:[@question,@answer],method: :post do |f| %>
