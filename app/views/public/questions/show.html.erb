@@ -14,9 +14,12 @@
       <tbody>
         <tr class ="border">
           <td colspan = "2">
-            <%= link_to customer_path(@question.customer_id) do %>
-              <span class= "small"><%= simple_format(@question.customer.nickname+"さん") %></span>
-            <% end %>
+            <div class= "d-flex justify-content-between small">
+              <%= link_to customer_path(@question.customer_id) do %>
+                <%= simple_format(@question.customer.nickname+"さん") %>
+              <% end %>
+              <%= @question.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </div>
             <span class= "text-break"><%= simple_format(@question.post) %></span>
             <% if customer_signed_in? && (@question.customer_id != current_customer.id && @answer_count <= 0) %>
               <%= form_with model:[@question,@answer],method: :post do |f| %>
@@ -58,7 +61,12 @@
           <tr>
             <td class ="border" colspan = "2">
               <div class="border">
-                <span class= "small"><%= simple_format(answer.customer.nickname+"さん") %></span>
+                <div class= "d-flex justify-content-between small">
+                  <%= link_to customer_path(answer.customer_id) do %>
+                    <%= simple_format(answer.customer.nickname+"さん") %>
+                  <% end %>
+                  <%= answer.created_at.strftime('%Y/%m/%d %H:%M') %>
+                </div>
                 <% if answer.score >= -0.2 %>
                   <span class= "text-break"><%= simple_format(answer.answer) %></span>
                 <% else %>
@@ -80,7 +88,12 @@
               </div>
               <% answer.replies.each do |reply| %>
               <div class="border-bottom">
-                <span class= "small"><%= simple_format(reply.customer.nickname+"さん") %></span>
+                <div class= "d-flex justify-content-between small">
+                  <%= link_to customer_path(reply.customer_id) do %>
+                    <%= simple_format(reply.customer.nickname+"さん") %>
+                  <% end %>
+                  <%= reply.created_at.strftime('%Y/%m/%d %H:%M') %>
+                </div>
                 <% if reply.score >= -0.2 %>
                   <span class= "text-break"><%= simple_format(reply.reply) %></span>
                 <% else %>
