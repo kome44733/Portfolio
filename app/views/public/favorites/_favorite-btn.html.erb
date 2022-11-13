@@ -1,9 +1,9 @@
 <% if question.favorited_by?(current_customer) %>
   <%= link_to question_favorites_path(question), method: :delete, remote: true,class:"text-white" do %>
-    <i class="fas fa-thumbs-up "></i><%= question.favorites.count %> いいね
+    <i class="fas fa-thumbs-up "></i><%= question.favorites.size %> いいね
   <% end %>
 <% else %>
   <%= link_to question_favorites_path(question), method: :post, remote: true,class:"text-white" do %>
-    <i class="far fa-thumbs-up"></i><%= question.favorites.count %> いいね
+    <i class="far fa-thumbs-up"></i><%= question.favorites.size %> いいね
   <% end %>
 <% end %>

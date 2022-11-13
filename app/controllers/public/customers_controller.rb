@@ -4,8 +4,8 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @favorites = current_customer.favorites.all.page(params[:page])
-    @questions = current_customer.questions.all.page(params[:question])
+    @favorites = current_customer.favorites.includes(question: :profession).page(params[:page])
+    @questions = current_customer.questions.includes(:profession,:answers).page(params[:question])
     answer_ids = @customer.answers.pluck(:id)
     @best_answer_questions = Question.where(best_answer_id: answer_ids)
     @active1 = nil

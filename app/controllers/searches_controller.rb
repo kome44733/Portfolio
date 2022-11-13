@@ -3,9 +3,9 @@ class SearchesController < ApplicationController
   before_action :authenticate_customer!, only: %i[search]
   def search
     if params[:profession].present?
-      @questions = Question.searchProfession(params[:word], params[:profession]).order(created_at: :desc).page(params[:page])
+      @questions = Question.includes(:profession,:answers).searchProfession(params[:word], params[:profession]).order(created_at: :desc).page(params[:page])
     else
-      @questions = Question.search(params[:word]).order(created_at: :desc).page(params[:page])
+      @questions = Question.includes(:profession,:answers).search(params[:word]).order(created_at: :desc).page(params[:page])
     end
     @word = params[:word]
   end

@@ -5,7 +5,7 @@
         <div class="col-md-12 col-sm-12 border py- text-break">
           <span class= "small">
             <%= question.profession.name%>
-              ：回答<%= question.answers.count %>件
+              ：回答<%= question.answers.size %>件
           </span></br>
           <% if question.score >= -0.2 %>
             <%= link_to question_path(question) do %>

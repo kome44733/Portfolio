@@ -79,7 +79,7 @@
           <div class="col-md-11 col-sm-11 py-2 text-break">
             <span class= "small"><%= question.profession.name %>
               <% if question.best_answer_id.nil? %>
-                ：回答<%= question.answers.count %>件
+                ：回答<%= question.answers.size %>件 
               <% else %>
                 ：解決済み
               <% end %>
