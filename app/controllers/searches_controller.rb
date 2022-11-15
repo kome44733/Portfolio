@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
   end
 
   def admin_search
-    @questions = Question.search(params[:word])
+    @questions = Question.includes(:profession).search(params[:word])
     @word = params[:word]
   end
 

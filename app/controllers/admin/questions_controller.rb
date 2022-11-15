@@ -2,7 +2,7 @@ class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @questions = Question.all.order(created_at: :desc).page(params[:page])
+    @questions = Question.includes(:profession).order(created_at: :desc).page(params[:page])
   end
 
   def show
