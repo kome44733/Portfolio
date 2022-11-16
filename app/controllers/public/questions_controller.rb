@@ -20,7 +20,7 @@ class Public::QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.includes(:customer, answers:[:customer, replies:[:customer]]).find(params[:id])
     @answer = Answer.new
     # ログインユーザーの回答数
     if customer_signed_in?
