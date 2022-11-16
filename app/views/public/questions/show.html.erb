@@ -35,7 +35,7 @@
     </table>
   </div>
   <div class="main">
-    <% @question.answers.each do |answer| %>
+    <% @question.answers.includes(:customer).each do |answer| %>
       <table class = "table">
             <% if answer.question.best_answer_id == answer.id %>
         <thead class ="table-success">
@@ -86,7 +86,7 @@
                   </div>
                 <% end %>
               </div>
-              <% answer.replies.each do |reply| %>
+              <% answer.replies.includes(:customer).each do |reply| %>
               <div class="border-bottom">
                 <div class= "d-flex justify-content-between small">
                   <%= link_to customer_path(reply.customer_id) do %>
