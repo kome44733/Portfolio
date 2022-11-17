@@ -17,11 +17,24 @@
 ### 主な利用シーン
 職業について知りたい時、転職・入職に向けて学習方法のアドバイスが欲しい時、自分と似たような人の転職例を知りたい時など、様々な使い方ができます。
 
-## 設計書
-<検討中>
-
 ## 開発環境
-検討中
+
+- OS：Linux(CentOS)
+
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+
+- フレームワーク：Ruby on Rails
+
+- JSライブラリ：jQuery
+
+- IDE：Cloud9
+
+
 
 ## 使用素材
-検討中
+
+- https://icons8.jp/icons/set/favicon
+
+- https://fontawesome.com/icons?d=gallery
+
+- https://stock.adobe.com/jp/
