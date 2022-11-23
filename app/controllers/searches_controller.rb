@@ -8,6 +8,9 @@ class SearchesController < ApplicationController
       @questions = Question.includes(:profession,:answers).search(params[:word]).order(created_at: :desc).page(params[:page])
     end
     @word = params[:word]
+    if params[:profession].present?
+      @profession = Profession.find(params[:profession])
+    end
   end
 
   def admin_search

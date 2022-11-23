@@ -3,7 +3,7 @@
         <div class="col-md-6"><%= image_tag 'top.jpg', class: 'img-fluid' %></div>
         <div class="col-md-6">
             <h1>FUTURECAREER</h1>
-            <p>このサイトは転職・入職に向けて学習方法のアドバイスが欲しい時、自分と似たような人の転職例を知りたいなど、様々な使い方ができます。</br>質問投稿・回答は会員登録された方のみ行えます。
+            <p>このサイトは転職・入職に向けて学習方法のアドバイスが欲しい時、自分と似たような人の転職例を知りたいなど、様々な使い方ができます。<br>質問投稿・回答は会員登録された方のみ行えます。
             </p>
         </div>
     </div>
@@ -13,11 +13,11 @@
   <div class="row mt-3 justify-content-center d-flex align-items-start">
     <div class="row col-md-8">
       <div class="col-md-12">
-        <%= render "/layouts/search" %></br>
+        <%= render "/layouts/search" %><br>
       </div>
       <div class="col-md-12">
         <% if customer_signed_in? %>
-        <%= link_to "質問をする" , new_question_path, class: "btn btn-outline-primary btn-block" %></br>
+        <%= link_to "質問をする" , new_question_path, class: "btn btn-outline-primary btn-block" %><br>
         <% end %>
       </div>
       <div class="col-md-12">

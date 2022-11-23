@@ -36,3 +36,9 @@ transition: all 0.2s ease;
 .color{
   background-color: #d9d9d9;
 }
+
+.text-truncate{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

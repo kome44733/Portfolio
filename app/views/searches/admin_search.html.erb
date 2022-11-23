@@ -16,7 +16,7 @@
         <%= link_to question.post,admin_question_path(question) %>
       </div>
       <div class="col-md-2">
-        <%= link_to "削除", admin_question_path(question), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+        <%= link_to "削除", admin_question_path(question), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
       </div>
     </div>
   <%end%>

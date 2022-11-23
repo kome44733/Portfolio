@@ -2,7 +2,7 @@
 <%= render "public/shared/error_messages", resource: resource %>
 <div class="container">
   <div class="border px-5 py-5">
-    <h2>サインイン</h2>
+    <h2>サインアップ</h2>
     <div class="row">
       <div class="col-md-12">
         <%= f.label :nickname %>
@@ -16,12 +16,12 @@
         <%= f.label :gender %>
       </div>  
       <div class="col-md-12">
-        <%= f.label :not_known  %>
         <%= f.radio_button :gender, :not_known %>
-        <%= f.label :male  %>
+        <%= f.label :gender, Customer.genders_i18n[:not_known], value: :not_known  %>
         <%= f.radio_button :gender, :male %>
-        <%= f.label :female  %>
+        <%= f.label :gender, Customer.genders_i18n[:male], value: :male  %>
         <%= f.radio_button :gender, :female %>
+        <%= f.label :gender, Customer.genders_i18n[:female], value: :female  %>
       </div>
     </div>  
     <div class="row">  

@@ -49,7 +49,7 @@
 <div class="container mt-5">
   <ul class="nav nav-fill row" role="tablist">
     <li class="nav-item">
-      <a class="nav-link <%= @active1 %>" href="<%= customer_path(@customer.id, {tab: 1}) %>" role="tab" aria-selected="<%= !!@active1 %>">お気に入りの質問</a>
+      <a class="nav-link <%= @active1 %>" href="<%= customer_path(@customer.id, {tab: 1}) %>" role="tab" aria-selected="<%= !!@active1 %>">いいねの質問</a>
     </li>
     <li class="nav-item">
       <a class="nav-link <%= @active2 %>" href="<%= customer_path(@customer.id, {tab: 2}) %>" role="tab" aria-selected="<%= !!@active2 %>">投稿した質問</a>
@@ -60,7 +60,7 @@
       <% @favorites.each do |favorite| %>
         <div class="row flex-nowrap">
           <div class="col-md-12 col-sm-12 border py-2 text-break">
-            <span class= "small"><%= favorite.question.profession.name %></span></br>
+            <span class= "small"><%= favorite.question.profession.name %></span><br>
             <%= link_to question_path(favorite.question.id) do %>
               <%= favorite.question.post.truncate(40) %>
             <% end %>
@@ -83,7 +83,7 @@
               <% else %>
                 ：解決済み
               <% end %>
-            </span></br>
+            </span><br>
             <%= link_to question_path(question) do %>
               <%= question.post.truncate(40) %>
             <% end %>

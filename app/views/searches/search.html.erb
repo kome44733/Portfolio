@@ -1,5 +1,9 @@
 <div class="container">
-  <h3 class="pb-3">検索結果</h3>
+  <% if params[:profession].present? %>
+    <h3 class="pb-3">職業：<%= @profession.name %>、検索ワード：<%= @word %></h3>
+  <% else %>
+    <h3 class="pb-3">検索ワード：<%= @word %></h3>
+  <% end %>
   <% unless @questions.exists? %>
     <div class="row my-5">
       <h5>検索結果はありませんでした</5>

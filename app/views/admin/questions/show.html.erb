@@ -37,12 +37,12 @@
             <div class="border">
             <%= simple_format(answer.customer.nickname+"さん") %>
             <%= simple_format(answer.answer) %>
-            <%= link_to "Destroy", admin_answer_path(answer.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+            <%= link_to "Destroy", admin_answer_path(answer.id), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
             </div>
             <% answer.replies.each do |reply| %>
               <%= simple_format(reply.customer.nickname+"さん") %>
               <%= simple_format(reply.reply) %>
-              <%= link_to "Destroy", admin_reply_path(reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+              <%= link_to "Destroy", admin_reply_path(reply.id), method: :delete, remote: true, class: "btn btn-sm btn-danger", data: {confirm: "本当に削除しますか？"} %>
             <% end %>
           </td>
         </tr>

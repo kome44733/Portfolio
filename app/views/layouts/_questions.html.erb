@@ -2,19 +2,19 @@
   <div class="tab <%= active1 %>" role="tabpanel" aria-labelledby="item1-tab">
     <% best_answers.each do |question| %>
       <div class="row flex-nowrap">
-        <div class="col-md-12 col-sm-12 border py- text-break">
+        <div class="col-md-12 col-sm-12 border py-2 text-truncate">
           <span class= "small">
             <%= question.profession.name%>
               ：回答<%= question.answers.size %>件
-          </span></br>
+          </span><br>
           <% if question.score >= -0.2 %>
             <%= link_to question_path(question) do %>
-              <%= question.post.truncate(40) %>
+              <%= question.post %>
             <% end %>
           <% else %>
             <div id="text-<%= question.id %>" class="nonMasked">
               <%= link_to question_path(question),data: {"turbolinks" => false} do %>
-                <%= question.post.truncate(40) %>
+                <%= question.post %>
               <% end %>
             </div>
             <div id="mask-<%= question.id %>">
@@ -30,16 +30,16 @@
   <div class="tab <%= active2 %>" role="tabpanel" aria-labelledby="item2-tab">
     <% no_best_answers.each do |question| %>
       <div class="row flex-nowrap">
-        <div class="col-md-12 col-sm-12 border py-2 text-break">
-          <span class= "small"><%= question.profession.name %></span></br>
+        <div class="col-md-12 col-sm-12 border py-2 text-truncate">
+          <span class= "small"><%= question.profession.name %></span><br>
           <% if question.score >= -0.2 %>
             <%= link_to question_path(question) do %>
-              <%= question.post.truncate(40) %>
+              <%= question.post %>
             <% end %>
           <% else %>
             <div id="text-<%= question.id %>" class="nonMasked">
               <%= link_to question_path(question),data: {"turbolinks" => false} do %>
-                <%= question.post.truncate(40) %>
+                <%= question.post %>
               <% end %>
             </div>
             <div id="mask-<%= question.id %>">

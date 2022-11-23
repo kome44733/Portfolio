@@ -1,7 +1,7 @@
 <div class="container">
   <h3 class="pb-3">Q&A一覧</h3>
   <%= render "layouts/search"%>
-  </br>
+  <br>
     <ul class="nav nav-fill row" role="tablist">
       <li class="nav-item">
         <a class="nav-link <%= @active1 %>" href="<%= questions_path(@question, {tab: 1}) %>" role="tab" aria-selected="<%= !!@active1 %>">未解決の質問</a>

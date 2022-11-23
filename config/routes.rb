@@ -18,9 +18,11 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "about" => "homes#about"
 
-    resources :customers, only: [:show, :update, :edit, :index]
-    get "/customers/:id/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
-    patch "/customers/:id/withdrawal" => "customers#withdrawal", as: "withdrawal"
+    resources :customers, only: [:show, :update, :edit, :index] do
+      get :unsubscribe, on: :member
+      patch :withdrawal, on: :member
+    end
+    
     resources :professions, only: [:show, :index]
     resources :questions do
       resource :favorites, only: [:create, :destroy]
@@ -32,12 +34,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/" => "homes#top"
-
     resources :questions
     resources :answers, only: [:destroy]
     resources :replies, only: [:destroy]
-
-
     resources :customers, only: [:show, :index, :edit, :update]
     resources :professions, only: [:index, :edit, :update, :create]
   end
