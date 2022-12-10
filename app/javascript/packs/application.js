@@ -32,3 +32,10 @@ $(document).on('turbolinks:load', function() {
     $(`#mask1-${id}`).hide();
   });
 });
+
+
+$(document).on('turbolinks:load', function() {
+  $('#button').on('click', function(){
+    $(window).scrollTop(300);
+  });
+});
