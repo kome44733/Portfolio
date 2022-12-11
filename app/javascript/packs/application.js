@@ -34,8 +34,11 @@ $(document).on('turbolinks:load', function() {
 });
 
 
+
+
 $(document).on('turbolinks:load', function() {
   $('#button').on('click', function(){
-    $(window).scrollTop(300);
+    var target = $("#target").offset().top;
+    $(window).scrollTop(target);
   });
 });
