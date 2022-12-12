@@ -45,7 +45,7 @@ $(document).on('turbolinks:load', function() {
 
 $(document).on('turbolinks:load', function() {
   let search = $(location).attr('search');
-  if(search != 'undefined'){
+  if(search != ''){
     var target = $("#target").offset().top;
     $(window).scrollTop(target);
   }
