@@ -42,3 +42,11 @@ $(document).on('turbolinks:load', function() {
     $(window).scrollTop(target);
   });
 });
+
+$(document).on('turbolinks:load', function() {
+  let search = $(location).attr('search');
+  if(search != 'undefined'){
+    var target = $("#target").offset().top;
+    $(window).scrollTop(target);
+  }
+});
