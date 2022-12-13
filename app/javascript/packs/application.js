@@ -34,15 +34,6 @@ $(document).on('turbolinks:load', function() {
 });
 
 
-
-
-$(document).on('turbolinks:load', function() {
-  $('#button').on('click', function(){
-    var target = $("#target").offset().top;
-    $(window).scrollTop(target);
-  });
-});
-
 $(document).on('turbolinks:load', function() {
   let search = $(location).attr('search');
   if(search != ''){
