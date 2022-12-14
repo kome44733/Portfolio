@@ -44,7 +44,6 @@ class Public::QuestionsController < ApplicationController
       redirect_to questions_path
     else
       flash[:alert] = "投稿に失敗しました。"
-      @question = Question.new(question_params)
       @selected_profession_id = question_params[:profession_id]
       render :new
     end

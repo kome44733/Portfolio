@@ -1,4 +1,12 @@
 <div class="container">
+  <% if @question.errors.any? %>
+  <%= @question.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @question.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
   <h3 class="pb-3">質問する</h3>
   <div class="border py-3">
     <%= form_with model: @question ,method: :post do |f| %>
