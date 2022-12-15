@@ -1,16 +1,8 @@
 <div class="container">
-  <% if @question.errors.any? %>
-  <%= @question.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @question.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-  <% end %>
+  <%= render 'layouts/error_messages', model: @question %>
   <h3 class="pb-3">質問する</h3>
   <div class="border py-3">
     <%= form_with model: @question ,method: :post do |f| %>
-    <%= render 'layouts/error_messages', model: f.object %>
       <div class="row col-md-12 mb-3">
         <div class="col-md-2 text-center ">
           <%= f.label :profession_id,"職業",class:"h4" %>
